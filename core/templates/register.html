@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register </title>
+</head>
+<body>
+<form action="/register/" method="post">
+      {% csrf_token %}
+<!--
+    {{all_form.as_p}}-->
+  <!--    {{all_form.first_name}}-->
+
+    First name: {{all_form.first_name}}<br>
+    Last name:  {{all_form.last_name}}<br>
+    Gender:     {{all_form.gender}}<br>
+    Email:       {{all_form.email}}<br>
+    Password:     {{all_form.password}}<br>
+    Confirm password:{{all_form.confirm_password}}<br>
+
+
+    <input type="submit" VALUE="Submit">
+</form>
+
+
+
+</body>
+</html>
