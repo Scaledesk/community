@@ -20,5 +20,6 @@ urlpatterns = [
     # url(r'^core/', include('core.urls')),
     url(r'^admin/', admin.site.urls),
     url(r"^register/", CreateUser),
+    url(r"^login",login),
 
 ]
