@@ -9,3 +9,24 @@ class UserProfile(models.Model):
     GENDER_CHOICES = (("M","Male"),("F","Female"))
     user = models.OneToOneField(User)
     gender = models.CharField(max_length=6,choices=GENDER_CHOICES, default="M")
+
+class UserDipp(models.Model):
+      email = models.EmailField(max_length=256)
+      dipp = models.IntegerField(max_length=50)
+
+class Profile(models.Model):
+      profile =models.OneToOneField(UserDipp)
+      companyName=models.CharField(max_length=100)
+      designatePerson=models.CharField(max_length=50)
+      founderCofounder=models.CharField(max_length=50)
+      website=models.CharField(max_length=50)
+      mobile=models.IntegerField()
+      address=models.CharField(max_length=256)
+      city=models.CharField(max_length=25)
+      state=models.CharField(max_length=30)
+      pincode=models.IntegerField()
+      facebook=models.CharField(max_length=256)
+      linkedin=models.CharField(max_length=256)
+      twitter = models.CharField(max_length=256)
+      industry=models.CharField(max_length=100)
+

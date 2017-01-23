@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from .forms import *
 from pprint import pprint
 from django.contrib.auth import authenticate, login
+import json
+from .models import *
 # Create your views here.
 
 def index(request):
@@ -11,38 +13,78 @@ def index(request):
 
 def CreateUser(request):
     if request.method == 'GET':
-        all_form = AllForm()
+        register_form = Register()
 
     if request.method == 'POST':
-        # pprint(request.POST['last_name'])
+        # response_data = {}
 
-        user = User.objects.create_user(username=request.POST['email'],
-                                        email=request.POST['email'],
-                                        password=request.POST['password'],
-                                        first_name=request.POST['first_name'],
-                                        last_name=request.POST['last_name']
-                                        )
+        #  if User.objects.filter(username=self.cleaned_data['email']).exists():
 
-        up = UserProfile()
-        up.user = user
-        up.gender = request.POST['gender']
-        # up.first_name = request.POST['first_name']
-        # up.last_name = request.POST['last_name']
-        # pprint(request.POST['first_name'])
-        # pprint(request.POST['last_name'])
-        up.save()
-        return  HttpResponse('You have been Successfully registered.')
+                email= request.POST['email']
+                dipp = request.POST['dipp']
+                pprint(dipp)
 
-    return render(request, 'register.html', { "all_form":all_form})
+                try:
+                    userData=UserDipp.objects.get(email=email,dipp=dipp)
+                    pprint(userData)
+                    if userData:
+                        up = Profile()
+                        up.companyName = request.POST['companyName']
+                        up.designatePerson = request.POST['designatePerson']
+                        up.founderCofounder = request.POST['founder']
+                        up.website = request.POST['website']
+                        up.mobile = request.POST['mobile']
+                        up.address = request.POST['address']
+                        up.city = request.POST['city']
+                        up.state = request.POST['state']
+                        up.pincode = request.POST['pincode']
+                        up.facebook = request.POST['facebook']
+                        up.linkedin = request.POST['linkedin']
+                        up.twitter = request.POST['twitter']
+                        up.industry = request.POST['industry']
+                        up.save()
+
+                    else: return HttpResponse("some error occurred!")
+
+                except Exception as e:
+
+                         return render(request, 'register.html', {"register": register_form})
+
+
+
+
+    return render(request, 'register.html', { "register":register_form})
+
+
+
+
+
 
 def login(request):
     login_form=LoginForm()
     if request.method=="POST":
         email=request.POST['email']
-        password=request.POST['password']
-        user = authenticate(username=email, password=password)
-        if user:
-            return HttpResponse('You have been Successfully logged.')
-        else: return HttpResponse('some error occurred!')
+        dipp=request.POST['dipp']
+        try:
+            userData=UserDipp.objects.get(email=email,dipp=dipp)
+            if userData:
+                register = Register()
+                return render(request, "register.html", {"register": register,'email':email,"dipp":dipp})
+
+            else:
+                return HttpResponse('some error occurred!')
+
+        except Exception as e:
+
+
+            return render(request, "login.html", {"login_form": login_form ,"msg": "Email/Dipp No. does not exist "})
+
+
+
 
     else: return render(request,"login.html",{"login_form":login_form})
+
+
+  # if not userData :
+  #              raise Http404("No MyModel matches the given query.")
+  #

@@ -5,24 +5,99 @@
     <title>Register </title>
 </head>
 <body>
-<form action="/register/" method="post">
+
+<form action="" method="post" id="register-form">
       {% csrf_token %}
-<!--
-    {{all_form.as_p}}-->
-  <!--    {{all_form.first_name}}-->
+    Dipp No. {{register.dipp}}<br><br>
+    Email {{register.email}}<br><br>
+    Company Name :{{register.companyName}}<br><br>
+    Desginate Person :{{register.designatePerson}}<br><br>
+    Founder/Co-Founder :{{register.founderCofounder}}<br><br>
+    website :{{register.website}}<br><br>
+    Mobile :{{register.mobile}}<br><br>
+    Address :{{register.address}}<br><br>
+    City  :{{register.city}}<br><br>
+    State :{{register.state}}<br><br>
+    Pincode :{{register.pincode}}<br><br>
+    Facebook Id :{{register.facebook}}<br><br>
+    Linkedin Id :{{register.linkedin}}<br><br>
+    Twitter :{{register.twitter}}<br><br>
+    Insustry/Sector:{{register.industry}}<br><br>
 
-    First name: {{all_form.first_name}}<br>
-    Last name:  {{all_form.last_name}}<br>
-    Gender:     {{all_form.gender}}<br>
-    Email:       {{all_form.email}}<br>
-    Password:     {{all_form.password}}<br>
-    Confirm password:{{all_form.confirm_password}}<br>
 
-
-    <input type="submit" VALUE="Submit">
+    <input type="button" VALUE="Submit" onclick="register(this)">
 </form>
+<div id="demo"></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
 
 
+
+
+
+
+
+ function register(res){
+
+var csrfmiddlewaretoken = getCookie('csrftoken');
+
+var email = document.getElementById("id_email").value;
+var dipp = document.getElementById("id_dipp").value;
+ var companyName = document.getElementById("id_companyName").value;
+ var designatePerson = document.getElementById("id_designatePerson").value;
+  var founder = document.getElementById("id_founderCofounder").value;
+  var website = document.getElementById("id_website").value;
+   var mobile = document.getElementById("id_mobile").value;
+    var address = document.getElementById("id_address").value;
+     var city = document.getElementById("id_city").value;
+      var state = document.getElementById("id_state").value;
+       var pincode = document.getElementById("id_pincode").value;
+        var facebook = document.getElementById("id_facebook").value;
+         var linkedin = document.getElementById("id_linkedin").value;
+          var twitter = document.getElementById("id_twitter").value;
+           var industry = document.getElementById("id_industry").value;
+
+
+   var dd ={"companyName":companyName,"designatePerson":designatePerson,"founder":founder,
+             "website":website,"mobile":mobile,"address":address,"city":city,"state":state,"pincode":pincode,
+             "facebook":facebook,"linkedin":linkedin,"twitter":twitter,"industry":industry,"email":email,"dipp":dipp,
+             'csrfmiddlewaretoken':csrfmiddlewaretoken};
+
+   $.ajax({
+     'url': "/register/",
+     'type':"POST",
+     'dataType':"json",
+     data:dd,
+     success : function(res){
+
+      document.getElementById("demo").innerHTML=res.result;
+
+     },
+     error:function(res){
+      console.log("some error");
+     }
+   });
+  }
+</script>
 
 </body>
 </html>
+
+

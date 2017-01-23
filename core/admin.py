@@ -4,5 +4,7 @@ from core.models import *
 
 # Register your models here.
 
-admin.site.register(UserProfile)
+
 # admin.site.register(User)
+admin.site.register(UserDipp)
+admin.site.register(Profile)
