@@ -5,15 +5,12 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 
-class UserProfile(models.Model):
-    GENDER_CHOICES = (("M","Male"),("F","Female"))
-    user = models.OneToOneField(User)
-    gender = models.CharField(max_length=6,choices=GENDER_CHOICES, default="M")
 
 class UserDipp(models.Model):
       email = models.EmailField(max_length=256, unique=True)
-      dipp = models.IntegerField()
+      dipp = models.IntegerField( unique=True)
       status=models.IntegerField(default=0)
+      user=models.ForeignKey(User,null=True,blank=True)
       def __unicode__(self):
             return self.email
 class Profile(models.Model):

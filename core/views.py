@@ -22,6 +22,7 @@ def CreateUser(request):
 
                 email= request.POST['email']
                 dipp = request.POST['dipp']
+                password=request.POST['password']
                 response_data = {}
                 # pprint(dipp)
 
@@ -31,7 +32,7 @@ def CreateUser(request):
                     pprint(userData.dipp)
 
                     if str(userData.dipp) == str(dipp):
-
+                        user = User.objects.create_user(dipp, email, password)
                         # pprint(userData.dipp)
                         # pprint(userData.email)
                         up = Profile()
@@ -53,6 +54,7 @@ def CreateUser(request):
                         up.industry = request.POST['industry']
                         up.save()
                         userData.status=1
+                        userData.user=user
                         userData.save()
                         response_data['result'] = 'Your profile has been created successfully!'
                         return HttpResponse(
@@ -68,7 +70,7 @@ def CreateUser(request):
                 except Exception as e:
 
                     return HttpResponse(
-                        json.dumps({"result": 'some error occurred '}),
+                        json.dumps({"result": 'Email and Dipp No. does not exist'}),
                         content_type="application/json"
                     )
 
@@ -84,12 +86,16 @@ def login(request):
     login_form=LoginForm()
     if request.method=="POST":
         email=request.POST['email']
-        dipp=request.POST['dipp']
+        password=request.POST['password']
+
         try:
-            userData=UserDipp.objects.get(email=email,dipp=dipp)
-            if userData:
+            user=authenticate(email=email,password=password)
+            # user = User.objects.get(username=email,password=password)
+            pprint(user)
+            if user:
+
                 register = Register()
-                return render(request, "register.html", {"register": register,'email':email,"dipp":dipp})
+                return render(request, "register.html", {"register": register})
 
             else:
                 return HttpResponse('some error occurred!')
@@ -97,7 +103,7 @@ def login(request):
         except Exception as e:
 
 
-            return render(request, "login.html", {"login_form": login_form ,"msg": "Email/Dipp No. does not exist "})
+            return render(request, "login.html", {"login_form": login_form ,"msg": "Email/Password. does not exist "})
 
 
 

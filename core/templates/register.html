@@ -23,6 +23,7 @@
     Linkedin Id :{{register.linkedin}}<br><br>
     Twitter :{{register.twitter}}<br><br>
     Insustry/Sector:{{register.industry}}<br><br>
+    Password:{{register.password}}<br><br>
 
 
     <input type="button" VALUE="Submit" onclick="register(this)">
@@ -73,12 +74,13 @@ var dipp = document.getElementById("id_dipp").value;
          var linkedin = document.getElementById("id_linkedin").value;
           var twitter = document.getElementById("id_twitter").value;
            var industry = document.getElementById("id_industry").value;
+           var password = document.getElementById("id_password").value;
 
 
    var dd ={"companyName":companyName,"designatePerson":designatePerson,"founder":founder,
              "website":website,"mobile":mobile,"address":address,"city":city,"state":state,"pincode":pincode,
              "facebook":facebook,"linkedin":linkedin,"twitter":twitter,"industry":industry,"email":email,"dipp":dipp,
-             'csrfmiddlewaretoken':csrfmiddlewaretoken};
+             'csrfmiddlewaretoken':csrfmiddlewaretoken,"password":password};
 
    $.ajax({
      'url': "/register/",

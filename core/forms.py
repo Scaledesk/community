@@ -27,7 +27,7 @@ class AllForm(forms.Form):
 
 class LoginForm(forms.Form):
       email=forms.EmailField()
-      dipp=forms.CharField(max_length="15")
+      password = forms.CharField(max_length='15', widget=forms.PasswordInput())
 class Register (forms.Form) :
        email = forms.EmailField()
        dipp = forms.CharField(max_length="15")
@@ -44,3 +44,4 @@ class Register (forms.Form) :
        linkedin = forms.CharField(max_length=256)
        twitter = forms.CharField(max_length=256)
        industry = forms.CharField(max_length=100)
+       password = forms.CharField(max_length='15', widget=forms.PasswordInput())
