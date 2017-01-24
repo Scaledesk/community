@@ -11,11 +11,13 @@ class UserProfile(models.Model):
     gender = models.CharField(max_length=6,choices=GENDER_CHOICES, default="M")
 
 class UserDipp(models.Model):
-      email = models.EmailField(max_length=256)
-      dipp = models.IntegerField(max_length=50)
-
+      email = models.EmailField(max_length=256, unique=True)
+      dipp = models.IntegerField()
+      status=models.IntegerField(default=0)
+      def __unicode__(self):
+            return self.email
 class Profile(models.Model):
-      profile =models.OneToOneField(UserDipp)
+      userdipp = models.OneToOneField(UserDipp)
       companyName=models.CharField(max_length=100)
       designatePerson=models.CharField(max_length=50)
       founderCofounder=models.CharField(max_length=50)
@@ -29,4 +31,6 @@ class Profile(models.Model):
       linkedin=models.CharField(max_length=256)
       twitter = models.CharField(max_length=256)
       industry=models.CharField(max_length=100)
+      def __unicode__(self):
+            return self.companyName
 

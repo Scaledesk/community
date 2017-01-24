@@ -16,19 +16,28 @@ def CreateUser(request):
         register_form = Register()
 
     if request.method == 'POST':
-        # response_data = {}
+
 
         #  if User.objects.filter(username=self.cleaned_data['email']).exists():
 
                 email= request.POST['email']
                 dipp = request.POST['dipp']
-                pprint(dipp)
+                response_data = {}
+                # pprint(dipp)
 
                 try:
                     userData=UserDipp.objects.get(email=email,dipp=dipp)
-                    pprint(userData)
-                    if userData:
+                    pprint(userData.email)
+                    pprint(userData.dipp)
+
+                    if str(userData.dipp) == str(dipp):
+
+                        # pprint(userData.dipp)
+                        # pprint(userData.email)
                         up = Profile()
+                        up.userdipp=userData
+                        # up.Profile.object(status=1)
+                        # up.profile = userData
                         up.companyName = request.POST['companyName']
                         up.designatePerson = request.POST['designatePerson']
                         up.founderCofounder = request.POST['founder']
@@ -43,14 +52,25 @@ def CreateUser(request):
                         up.twitter = request.POST['twitter']
                         up.industry = request.POST['industry']
                         up.save()
+                        userData.status=1
+                        userData.save()
+                        response_data['result'] = 'Your profile has been created successfully!'
+                        return HttpResponse(
+                            json.dumps(response_data),
+                            content_type="application/json"
+                        )
 
-                    else: return HttpResponse("some error occurred!")
+                    else:  return HttpResponse(
+                                       json.dumps({"result": "Email and Dipp No. does not exist"}),
+                                       content_type="application/json"
+                                          )
 
                 except Exception as e:
 
-                         return render(request, 'register.html', {"register": register_form})
-
-
+                    return HttpResponse(
+                        json.dumps({"result": 'some error occurred '}),
+                        content_type="application/json"
+                    )
 
 
     return render(request, 'register.html', { "register":register_form})
