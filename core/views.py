@@ -3,10 +3,13 @@ from django.http import HttpResponse
 from .forms import *
 from pprint import pprint
 from django.contrib.auth import authenticate, login
+from django.views.generic import RedirectView
+# from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 import json
 from .models import *
 # Create your views here.
-
+from django.contrib import auth
 def index(request):
     return HttpResponse("Hello, You are at the core index.")
 
@@ -28,11 +31,11 @@ def CreateUser(request):
 
                 try:
                     userData=UserDipp.objects.get(email=email,dipp=dipp)
-                    pprint(userData.email)
-                    pprint(userData.dipp)
+                    # pprint(userData.email)
+                    # pprint(userData.dipp)
 
                     if str(userData.dipp) == str(dipp):
-                        user = User.objects.create_user(dipp, email, password)
+                        user = User.objects.create_user(email, email, password)
                         # pprint(userData.dipp)
                         # pprint(userData.email)
                         up = Profile()
@@ -87,23 +90,28 @@ def login(request):
     if request.method=="POST":
         email=request.POST['email']
         password=request.POST['password']
-
+        pprint(email)
+        pprint(password)
         try:
-            user=authenticate(email=email,password=password)
-            # user = User.objects.get(username=email,password=password)
-            pprint(user)
-            if user:
+            user = authenticate(username=email, password=password)
+            if user is not None:
+                # if user.is_active:
+                    auth.login(request, user)
+                    # return HttpResponseRedirect("/new_url/")
 
-                register = Register()
-                return render(request, "register.html", {"register": register})
+                    # return   url(r'^.*/$', RedirectView.as_view(url='/home/'))
+                    return render(request, "dashboard.html", {"msg": "you have been successfully logged."})
 
-            else:
-                return HttpResponse('some error occurred!')
+                # else:  return render(request, "login.html", {"login_form": login_form ,"msg": "disabled account "})
+
+            else:  return render(request, "login.html", {"login_form": login_form ,"msg": "Email/Password. does not exist! "})
+
+
 
         except Exception as e:
 
 
-            return render(request, "login.html", {"login_form": login_form ,"msg": "Email/Password. does not exist "})
+            return render(request, "login.html", {"login_form": login_form ,"msg": e})
 
 
 
@@ -114,3 +122,7 @@ def login(request):
   # if not userData :
   #              raise Http404("No MyModel matches the given query.")
   #
+@login_required
+def dashboard(request):
+
+    return render(request, "dashboard.html")
