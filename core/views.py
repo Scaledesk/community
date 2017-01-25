@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login
 from django.views.generic import RedirectView
 # from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 import json
 from .models import *
 # Create your views here.
@@ -97,10 +98,10 @@ def login(request):
             if user is not None:
                 # if user.is_active:
                     auth.login(request, user)
-                    # return HttpResponseRedirect("/new_url/")
+                    return redirect("/dashboard")
 
                     # return   url(r'^.*/$', RedirectView.as_view(url='/home/'))
-                    return render(request, "dashboard.html", {"msg": "you have been successfully logged."})
+                    # return render(request, "dashboard.html", {"msg": "you have been successfully logged."})
 
                 # else:  return render(request, "login.html", {"login_form": login_form ,"msg": "disabled account "})
 
@@ -125,4 +126,39 @@ def login(request):
 @login_required
 def dashboard(request):
 
-    return render(request, "dashboard.html")
+    profileData = Profile.objects.get(userdipp=UserDipp.objects.get(user=request.user))
+    return render(request, "dashboard.html",{'profile':profileData})
+
+@login_required
+def update(request):
+    profileData = Profile.objects.get(userdipp=UserDipp.objects.get(user=request.user))
+    if request.method == 'POST':
+        try:
+            up = Profile()
+            up.companyName = request.POST['companyName']
+            up.designatePerson = request.POST['designatePerson']
+            up.founderCofounder = request.POST['founder']
+            up.website = request.POST['website']
+            up.mobile = request.POST['mobile']
+            up.address = request.POST['address']
+            up.city = request.POST['city']
+            up.state = request.POST['state']
+            up.pincode = request.POST['pincode']
+            up.facebook = request.POST['facebook']
+            up.linkedin = request.POST['linkedin']
+            up.twitter = request.POST['twitter']
+            up.industry = request.POST['industry']
+
+            # if
+            # else:
+            #     return render(request, "login.html",
+            #                   {"login_form": login_form, "msg": "Email/Password. does not exist! "})
+            #
+
+
+        except Exception as e:
+
+            return render(request, "profileUpdate.html", {"profile": profileData, "msg": e})
+
+
+    else :return render(request, "profileUpdate.html",{'profile':profileData})

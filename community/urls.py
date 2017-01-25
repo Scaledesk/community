@@ -21,5 +21,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r"^register/", CreateUser),
     url(r"^login",login),
+    url(r"^dashboard",dashboard),
+    url(r"^update",update),
 
 ]

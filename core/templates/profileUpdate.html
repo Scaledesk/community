@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Profile</title>
+</head>
+<body>
+<h1>Update Profile</h1>
+
+  <form action="" method="post" id="register-form">
+      {% csrf_token %}
+
+    Company Name :<input id="id_companyName" maxlength="100" name="companyName" type="text" value="{{profile.companyName}}"><br><br>
+    Desginate Person :<input id="id_designatePerson" maxlength="50" name="designatePerson" type="text" value=" {{profile.designatePerson}}"><br><br>
+    Founder/Co-Founder :<input id="id_founderCofounder" maxlength="50" name="founderCofounder" type="text" value="{{profile.founderCofounder}}"><br><br>
+    website :<input id="id_website" maxlength="50" name="website" type="text" value="{{profile.website}}"><br><br>
+    Mobile :<input id="id_mobile" name="mobile" type="number" value="{{profile.mobile}}"><br><br>
+    Address :<input id="id_address" maxlength="256" name="address" type="text" value="{{profile.address}}"><br><br>
+    City  :<input id="id_city" maxlength="25" name="city" type="text" value="{{profile.city}}"><br><br>
+    State :<input id="id_state" maxlength="30" name="state" type="text" value="{{profile.state}}"><br><br>
+    Pincode :<input id="id_pincode" name="pincode" type="number" value="{{profile.pincode}}"><br><br>
+    Facebook Id :<input id="id_facebook" maxlength="256" name="facebook" type="text" value="{{profile.facebook}}"><br><br>
+    Linkedin Id :<input id="id_linkedin" maxlength="256" name="linkedin" type="text" value="{{profile.linkedin}}"><br><br>
+    Twitter :<input id="id_twitter" maxlength="256" name="twitter" type="text" value="{{profile.twitter}}"><br><br>
+    Insustry/Sector:<input id="id_industry" maxlength="100" name="industry" type="text" value="{{profile.industry}}"><br><br>
+
+    <input type="button" value="Submit" onclick="update(this)">
+</form>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+
+
+
+
+
+
+ function update(res){
+
+var csrfmiddlewaretoken = getCookie('csrftoken');
+
+ var companyName = document.getElementById("id_companyName").value;
+ var designatePerson = document.getElementById("id_designatePerson").value;
+  var founder = document.getElementById("id_founderCofounder").value;
+  var website = document.getElementById("id_website").value;
+   var mobile = document.getElementById("id_mobile").value;
+    var address = document.getElementById("id_address").value;
+     var city = document.getElementById("id_city").value;
+      var state = document.getElementById("id_state").value;
+       var pincode = document.getElementById("id_pincode").value;
+        var facebook = document.getElementById("id_facebook").value;
+         var linkedin = document.getElementById("id_linkedin").value;
+          var twitter = document.getElementById("id_twitter").value;
+           var industry = document.getElementById("id_industry").value;
+
+
+
+   var dd ={"companyName":companyName,"designatePerson":designatePerson,"founder":founder,
+             "website":website,"mobile":mobile,"address":address,"city":city,"state":state,"pincode":pincode,
+             "facebook":facebook,"linkedin":linkedin,"twitter":twitter,"industry":industry,
+             'csrfmiddlewaretoken':csrfmiddlewaretoken};
+
+   $.ajax({
+     'url': "/update/",
+     'type':"POST",
+     'dataType':"json",
+     data:dd,
+     success : function(res){
+
+      document.getElementById("demo").innerHTML=res.result;
+
+     },
+     error:function(res){
+      console.log("some error");
+     }
+   });
+  }
+</script>
+</body>
+</html>
