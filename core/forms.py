@@ -45,3 +45,16 @@ class Register (forms.Form) :
        twitter = forms.CharField(max_length=256)
        industry = forms.CharField(max_length=100)
        password = forms.CharField(max_length='15', widget=forms.PasswordInput())
+class ProjectForm(forms.Form):
+    brandName = forms.CharField(max_length=100)
+    BUSINESS_TYPE = (("B2B", "B2B"), ("B2C", "B2C"), ("B2B2C", "B2B2C"))
+    typeOfBusiness = forms.ChoiceField(choices = BUSINESS_TYPE)
+    url = forms.CharField(max_length=100)
+    description = forms.CharField(max_length=300)
+    logo = forms.FileField(label='Select a file',help_text='max. 2 megabytes')
+    videoLink = forms.CharField(max_length=256)
+    aboutProductCompany=forms.FileField(label='Select a file',help_text='max. 2 megabytes')
+    investor = forms.CharField(max_length=256)
+
+class QuestionForm(forms.Form):
+       question=forms.CharField(max_length=1000)

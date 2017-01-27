@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Question</title>
+</head>
+<body>
+
+<h1>Question </h1>
+
+
+
+  <form action="/question" method="post" id="register-form" enctype="multipart/form-data">
+      {% csrf_token %}
+      Question:-{{questionForm.question}}
+
+      <input type="submit" value="Submit" >
+  </form>
+
+{{msg}}
+
+</body>
+</html>

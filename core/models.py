@@ -31,3 +31,18 @@ class Profile(models.Model):
       def __unicode__(self):
             return self.companyName
 
+class Project(models.Model):
+      profile = models.ForeignKey(Profile)
+      brandName=models.CharField(max_length=100)
+      BUSINESS_TYPE = (("B2B", "B2B"), ("B2C", "B2C"), ("B2B2C", "B2B2C"))
+      typeOfBusiness=models.CharField(max_length=6,choices=BUSINESS_TYPE)
+      url = models.CharField(max_length=100)
+      description=models.CharField(max_length=300)
+      logo = models.FileField(upload_to='documents/%Y/%m/%d')
+      videoLink = models.CharField(max_length=256)
+      aboutProductCompany=models.FileField(upload_to='documents/%Y/%m/%d')
+      investor = models.CharField(max_length=256)
+
+class Question(models.Model):
+      profile = models.ForeignKey(Profile)
+      question=models.CharField(max_length=1000)

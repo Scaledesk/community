@@ -23,5 +23,8 @@ urlpatterns = [
     url(r"^login",login),
     url(r"^dashboard",dashboard),
     url(r"^update",update),
+    url(r"^project",project),
+    url(r"^question",QuestionView),
+
 
 ]

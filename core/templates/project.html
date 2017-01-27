@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Works </title>
+</head>
+<body>
+<h1 > Project Works  </h1>
+
+  <form action="/project" method="post" id="register-form" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      Company Name     :- <input id="id_companyName" maxlength="100" name="companyName" type="text" value="{{profile.companyName}}" readonly><br><br>
+      Brand Name       :-  {{projectForm.brandName}}<br><br>
+      Type of Business :-{{projectForm.typeOfBusiness}}<br><br>
+      URL Link         :-{{projectForm.url}}<br><br>
+      Brief Description:-{{projectForm.description}}<br><br>
+      Logo/ image      :- {{projectForm.logo}}<br><br>
+      About the product/company   :- {{projectForm.aboutProductCompany}}<br><br>
+      Video link to embed      :- {{projectForm.videoLink}}<br><br>
+      Investor Deck              :- {{projectForm.investor}}<br><br>
+
+      <input type="submit" value="Submit" >
+  </form>
+
+{{msg}}
+
+
+</body>
+</html>

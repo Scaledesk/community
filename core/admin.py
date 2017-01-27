@@ -8,3 +8,5 @@ from core.models import *
 # admin.site.register(User)
 admin.site.register(UserDipp)
 admin.site.register(Profile)
+admin.site.register(Project)
+admin.site.register(Question)

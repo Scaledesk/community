@@ -11,6 +11,8 @@ import json
 from .models import *
 # Create your views here.
 from django.contrib import auth
+from django.core.files.storage import FileSystemStorage
+
 def index(request):
     return HttpResponse("Hello, You are at the core index.")
 
@@ -131,7 +133,9 @@ def dashboard(request):
 
 @login_required
 def update(request):
+
     profileData = Profile.objects.get(userdipp=UserDipp.objects.get(user=request.user))
+
     if request.method == 'POST':
         try:
             up = Profile()
@@ -162,3 +166,65 @@ def update(request):
 
 
     else :return render(request, "profileUpdate.html",{'profile':profileData})
+
+@login_required
+def project(request):
+
+    projectForm = ProjectForm()
+
+    profileData = Profile.objects.get(userdipp=UserDipp.objects.get(user=request.user))
+    if request.method=="POST":
+          try:
+
+              pro = Project()
+              pro.profile=profileData
+              pprint(profileData.companyName)
+              logo = request.FILES['logo']
+              aboutProductCompany = request.FILES['aboutProductCompany']
+              pprint(aboutProductCompany)
+
+              fs = FileSystemStorage()
+
+              logo = fs.save(logo.name, logo)
+              logo_url = fs.url(logo)
+              fss = FileSystemStorage()
+              aboutProductCompany = fss.save(aboutProductCompany.name, aboutProductCompany)
+              aboutProductCompany_url = fss.url(aboutProductCompany)
+
+              pro.brandName = request.POST['brandName']
+              pro.typeOfBusiness = request.POST['typeOfBusiness']
+              pro.url = request.POST['url']
+              pro.description = request.POST['description']
+              pro.logo = logo_url
+              pro.videoLink = request.POST['videoLink']
+              pro.aboutProductCompany = aboutProductCompany_url
+              pro.investor = request.POST['investor']
+              pro.save()
+              return  render(request, "project.html", {"msg": "Project added successfully." ,"projectForm":projectForm})
+          except Exception as e:
+                return render(request, "project.html", {"msg":e ,"projectForm":projectForm})
+
+    else :return render(request,"project.html",{"profile":profileData,"projectForm":projectForm})
+
+
+@login_required
+def QuestionView(request):
+    questionForm=QuestionForm()
+    profileData = Profile.objects.get(userdipp=UserDipp.objects.get(user=request.user))
+    if request.method == "POST":
+       try:
+           pro = Project()
+           pro.profile = profileData
+           ques=Question()
+           ques.profile=profileData
+           ques.question = request.POST['question']
+           pro.save()
+           ques.save()
+
+           return render(request, "Question.html", {"msg": "Question added successfully.", "questionForm": questionForm})
+
+       except Exception as e:
+
+        return render(request, "Question.html",{"msg": e, "questionForm": questionForm})
+
+    else : return render(request, "Question.html",{"questionForm": questionForm})
