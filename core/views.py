@@ -228,3 +228,36 @@ def QuestionView(request):
         return render(request, "Question.html",{"msg": e, "questionForm": questionForm})
 
     else : return render(request, "Question.html",{"questionForm": questionForm})
+
+
+def AnswerView(request):
+
+    # profileData = Profile.objects.get(userdipp=UserDipp.objects.get(user=request.user))
+    questionData=Question.objects.all()
+    #Data = Question.objects.get(userdipp=UserDipp.objects.get(user=request.user))
+    # for data in questionData:
+    #  pprint(data.question)
+    #  pprint(data.id)
+
+
+    if request.method == 'GET':
+
+        return render(request, "Answer.html", {"questionData": questionData})
+
+    else:
+
+        if request.method == "POST":
+            try:
+                # ques=Question()
+                # ques.question=request.POST['id']
+                ans=Answer()
+                ans.answerField = request.POST['answer']
+                ans.question=Question.objects.get(pk=request.POST['id'])
+                ans.save()
+                # ques.save()
+                return render(request, "Answer.html",{"msg": "Answer  successfully submit.", "questionData": questionData})
+            except Exception as e:
+                 return render(request, "Answer.html",{"msg": e, "questionData": questionData})
+        else:
+            return render(request, "Answer.html")
+

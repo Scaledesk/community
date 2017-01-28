@@ -46,3 +46,11 @@ class Project(models.Model):
 class Question(models.Model):
       profile = models.ForeignKey(Profile)
       question=models.CharField(max_length=1000)
+      def __unicode__(self):
+            return self.question
+class Answer(models.Model):
+      question=models.ForeignKey(Question)
+      answerField=models.CharField(max_length=1000)
+
+      def __unicode__(self):
+            return self.question.question

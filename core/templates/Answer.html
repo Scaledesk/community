@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> Show Question </title>
+</head>
+<body>
+<!--{{questionData}}-->
+<h1>Show Question </h1>
+ <!--{{questionData.question}}-->
+
+    {% for data in questionData %}
+
+    {{ data.question }}
+     <form action="/answer" method="post" >
+          {% csrf_token %}
+        <input type="text" name="answer" id="answer">
+         <input type="hidden" name="id" value="{{data.id}}">
+         <input type="submit" value="send">
+     </form>
+
+    {% endfor %}
+
+
+</body>
+</html>

@@ -25,6 +25,8 @@ urlpatterns = [
     url(r"^update",update),
     url(r"^project",project),
     url(r"^question",QuestionView),
+    url(r"^answer",AnswerView),
+
 
 
 ]
