@@ -231,13 +231,24 @@ def QuestionView(request):
 
 
 def AnswerView(request):
+    ans = Answer()
 
     # profileData = Profile.objects.get(userdipp=UserDipp.objects.get(user=request.user))
+
     questionData=Question.objects.all()
-    #Data = Question.objects.get(userdipp=UserDipp.objects.get(user=request.user))
-    # for data in questionData:
-    #  pprint(data.question)
-    #  pprint(data.id)
+
+    # data = Question.objects.get(pk=Answer.objects.get(ans.answerField))
+    for data1 in questionData:
+
+        data = Answer.objects.filter(question=data1)
+
+        pprint(data)
+
+
+    # for data1 in data:
+    #
+    #  pprint(data1)
+
 
 
     if request.method == 'GET':
@@ -250,7 +261,7 @@ def AnswerView(request):
             try:
                 # ques=Question()
                 # ques.question=request.POST['id']
-                ans=Answer()
+
                 ans.answerField = request.POST['answer']
                 ans.question=Question.objects.get(pk=request.POST['id'])
                 ans.save()
