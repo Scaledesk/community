@@ -1,3 +1,31 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8">-->
+    <!--<title> Show Question </title>-->
+<!--</head>-->
+<!--<body>-->
+<!--&lt;!&ndash;{{questionData}}&ndash;&gt;-->
+<!--<h1>Show Question </h1>-->
+ <!--&lt;!&ndash;{{questionData.question}}&ndash;&gt;-->
+
+    <!--{% for data in questionData %}-->
+
+    <!--{{ data.question }}-->
+     <!--<form action="/answer" method="post" >-->
+          <!--{% csrf_token %}-->
+        <!--<input type="text" name="answer" id="answer">-->
+         <!--<input type="hidden" name="id" value="{{data.id}}">-->
+         <!--<input type="submit" value="send">-->
+     <!--</form>-->
+
+    <!--{% endfor %}-->
+
+
+<!--</body>-->
+<!--</html>-->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,14 +39,29 @@
 
     {% for data in questionData %}
 
-    {{ data.question }}
+   <h4> {{ data.question }}</h4>
+    {% for ans in ansData %}
+        {% if ans.question == data %}
+           {{ ans.answerField }}
+             <!--{{ans.question.profile.userdipp.user}}-->
+              <!--{{user.email}}-->
+
+           {% if user == ans.question.profile.userdipp.user %}
+
+            <a href="{% url 'answerdelete' ans.id %}">update</a>/<a href="{% url 'answerdelete' ans.id %}">Delete</a>
+
+            {% endif %}<br>
+
+           {% endif %}
+
+    {% endfor %}
+
      <form action="/answer" method="post" >
           {% csrf_token %}
         <input type="text" name="answer" id="answer">
          <input type="hidden" name="id" value="{{data.id}}">
          <input type="submit" value="send">
      </form>
-
     {% endfor %}
 
 

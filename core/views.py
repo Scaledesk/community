@@ -135,10 +135,10 @@ def dashboard(request):
 def update(request):
 
     profileData = Profile.objects.get(userdipp=UserDipp.objects.get(user=request.user))
-
+    response_data = {}
     if request.method == 'POST':
         try:
-            up = Profile()
+            up=profileData
             up.companyName = request.POST['companyName']
             up.designatePerson = request.POST['designatePerson']
             up.founderCofounder = request.POST['founder']
@@ -153,11 +153,18 @@ def update(request):
             up.twitter = request.POST['twitter']
             up.industry = request.POST['industry']
 
+            up.save()
             # if
             # else:
             #     return render(request, "login.html",
             #                   {"login_form": login_form, "msg": "Email/Password. does not exist! "})
             #
+
+            response_data['result'] = 'Your profile has been Updated successfully!'
+            return HttpResponse(
+                json.dumps(response_data),
+                content_type="application/json"
+            )
 
 
         except Exception as e:
@@ -178,7 +185,7 @@ def project(request):
 
               pro = Project()
               pro.profile=profileData
-              pprint(profileData.companyName)
+              # pprint(profileData.companyName)
               logo = request.FILES['logo']
               aboutProductCompany = request.FILES['aboutProductCompany']
               pprint(aboutProductCompany)
@@ -230,20 +237,73 @@ def QuestionView(request):
     else : return render(request, "Question.html",{"questionForm": questionForm})
 
 
+# def AnswerView(request):
+#     ans = Answer()
+#
+#     # profileData = Profile.objects.get(userdipp=UserDipp.objects.get(user=request.user))
+#
+#     questionData=Question.objects.all()
+#
+#     # data = Question.objects.get(pk=Answer.objects.get(ans.answerField))
+#     for data1 in questionData:
+#
+#         data = Answer.objects.filter(question=data1)
+#
+#         pprint(data)
+#
+#
+#     # for data1 in data:
+#     #
+#     #  pprint(data1)
+#
+#
+#
+#     if request.method == 'GET':
+#
+#         return render(request, "Answer.html", {"questionData": questionData})
+#
+#     else:
+#
+#         if request.method == "POST":
+#             try:
+#                 # ques=Question()
+#                 # ques.question=request.POST['id']
+#
+#                 ans.answerField = request.POST['answer']
+#                 ans.question=Question.objects.get(pk=request.POST['id'])
+#                 ans.save()
+#                 # ques.save()
+#                 return render(request, "Answer.html",{"msg": "Answer  successfully submit.", "questionData": questionData})
+#             except Exception as e:
+#                  return render(request, "Answer.html",{"msg": e, "questionData": questionData})
+#         else:
+#             return render(request, "Answer.html")
+#
+
+
+@login_required
 def AnswerView(request):
     ans = Answer()
 
     # profileData = Profile.objects.get(userdipp=UserDipp.objects.get(user=request.user))
 
     questionData=Question.objects.all()
+    ansData = Answer.objects.all()
+
+    # userdippno = Question.objects.get(profile = Profile.objects.get(userdipp=UserDipp.objects.get(user=request.user)))
+    # userdipp = UserDipp.objects.get(user=request.user)
+    # pprint(userdippno)
 
     # data = Question.objects.get(pk=Answer.objects.get(ans.answerField))
-    for data1 in questionData:
+    # for data1 in questionData:
+    #
+    #     data = Answer.objects.filter(question=data1)
 
-        data = Answer.objects.filter(question=data1)
-
-        pprint(data)
-
+        # pprint(data[0].question.question)
+        # pprint(data1.question)
+        # for obj in data:
+        #
+        #     pprint(obj.answerField)
 
     # for data1 in data:
     #
@@ -253,7 +313,7 @@ def AnswerView(request):
 
     if request.method == 'GET':
 
-        return render(request, "Answer.html", {"questionData": questionData})
+        return render(request, "Answer.html", {"questionData": questionData, "ansData":ansData})
 
     else:
 
@@ -266,9 +326,41 @@ def AnswerView(request):
                 ans.question=Question.objects.get(pk=request.POST['id'])
                 ans.save()
                 # ques.save()
-                return render(request, "Answer.html",{"msg": "Answer  successfully submit.", "questionData": questionData})
+                return render(request, "Answer.html",{"msg": "Answer  successfully submit.", "questionData": questionData, "ansData":ansData})
             except Exception as e:
-                 return render(request, "Answer.html",{"msg": e, "questionData": questionData})
+                 return render(request, "Answer.html",{"msg": e, "questionData": questionData, "ansData":ansData})
         else:
-            return render(request, "Answer.html")
+            return render(request, "Answer.html",{"questionData": questionData, "ansData":ansData})
 
+
+
+
+# @login_required
+def AnswerDelete(request, id):
+    pprint("______________________________________________________________________________")
+    # pprint(id)
+    #
+    # questionData = Question.objects.all()
+    # ansData = Answer.objects.all()
+    # delete=Answer.objects.get(id=id)
+    #
+    # if delete:
+    #
+    #          try:
+    #               delete.delete()
+    #               return render(request, "Answer.html",
+    #                            {"msg": "Answer  successfully submit.", "questionData": questionData, "ansData": ansData})
+    #
+    #          except Exception as e:
+    #           return render(request, "Answer.html",{"msg": "Answer  successfully submit.", "questionData": questionData, "ansData": ansData})
+    #
+    #
+    # else: return render(request, "Answer.html",{"msg": "Answer  successfully submit.", "questionData": questionData, "ansData": ansData})
+
+
+
+
+
+@login_required
+def AnswerUpdate(request):
+    return

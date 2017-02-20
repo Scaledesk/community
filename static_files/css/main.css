@@ -1,0 +1,501 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+html{
+    overflow-x: hidden;
+}
+body{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+    line-height: 1.6em;
+    overflow-x: hidden;
+    color: #565a5c;
+    position: relative;
+}
+
+/*
+a[href]:not([class]){
+    text-decoration: underline;
+}
+*/
+
+
+/*@font-face {
+    font-family: David-Bold;
+    src: url("../fonts/davidbd.ttf");
+}*/
+
+h1{
+   /* font-family: "David-Bold",  "Open Sans" ,sans-serif ;*/
+    font-family: 'Istok Web', sans-serif;
+    color: #191919;
+}
+
+
+h2{font-family: 'Istok Web', sans-serif;
+    font-size: 32px;
+    color: #3a3a3a;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.h2-custom{
+    position: absolute;
+    padding: 10px;
+    left: -33%;
+    top: 0px;
+}
+
+
+
+.p-heading{
+    margin-top: 3%;
+    font-size: 15px;
+    font-weight: 400;
+    text-transform: capitalize;
+    color: #323e4a;
+    text-shadow: 0 0 #88969d;
+}
+
+p{
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 300;
+    color: #3b4852;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.para-container{
+    padding-left: 20px;
+}
+
+
+/*//////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////*/
+
+section{
+    padding: 6% 0;
+}
+
+
+/*//////////////// Social list////////////////////////*/
+
+.social-list{
+    padding-left: 0;
+}
+
+
+.social-list li {
+    list-style: none;
+    display: inline-block;
+}
+
+
+.social-list li  a{
+    color: #fff;
+    font-size: 1.3em;
+    list-style: none;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    margin: 5px;
+    background-color: rgba(255, 255, 255, 0.32);
+    text-align: center;
+
+}
+
+/*/////////////////////////////////ends here/////////////////////////*/
+
+/*//////////////////////////////////////////////////////////////////////////////////
+                                 Navigation Section
+//////////////////////////////////////////////////////////////////////////////////*/
+nav ul{
+    z-index:1000;
+    -webkit-transition:.5s;
+    -moz-transition:.5s;
+    transition:.5s;
+}
+.custom-nav.active{
+    opacity: 1;
+    color:#fff;
+    -webkit-transition:.5s;
+    -moz-transition:.5s;
+    transition:.5s;
+}
+
+
+
+.custom-nav{
+    background-color: #ffffff;
+
+}
+
+.custom-nav ul li a{
+    line-height: 50px;
+    color: #000;
+    font-size: 14px;
+    transition: all .4s ease-in-out;
+}
+
+
+.navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus{
+    text-decoration: line-through;
+    transition: all .4s ease-in-out;
+
+
+}
+
+
+.custom-nav ul li:nth-child(8) a{
+    background-color: #ec8244;
+    line-height: 20px;
+    margin: 15px 0;
+    color: #fff;
+}
+
+.custom-nav ul li:nth-child(8) a:hover{
+    background-color: #ec8244;
+    line-height: 20px;
+    margin: 15px 0;
+    color: #fff;
+}
+
+.custom-nav ul li:nth-child(8) a:focus{
+    background-color: #ec8244;
+    line-height: 20px;
+    margin: 15px 0;
+    color: #fff;
+}
+
+
+.search-container{
+    position: absolute;
+    top: 0;
+    background-color: #1f1f1f;
+    height: 100vh;
+    display: -webkit-flex;
+    -webkit-justify-content: center;
+    -webkit-align-items: center;
+    -moz-justify-content: center;
+    -moz-align-items: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-closed{
+    width: 100%;
+    transform: translateX(-100%);
+    transition: all .4s ease-in-out;
+
+}
+
+.search-open{
+    transform: translateX(100%);
+}
+
+
+
+.custom-brand{
+    padding: 0;
+}
+
+
+
+/*//////////////////////////////////////////////////////////////////////////////////
+                                 Hero Section
+//////////////////////////////////////////////////////////////////////////////////*/
+
+.welcome-message{
+    padding: 10px;
+}
+
+@media screen and (min-width: 769px){
+    .welcome-message{
+        padding: 100px 45px;
+    }
+
+    .hero-section{
+        padding: 50px;
+    }
+
+}
+
+
+.welcome-message .clear{
+    position: relative;
+    z-index: 1;
+}
+
+
+.welcome-message .hero-txt{
+    margin-bottom: 20px;
+}
+
+.hero-section {
+    background-color: #016b6b;
+    width: 100%;
+    height:100vh;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*//////////////////////////////////////////////////////////////////////////////////
+                                 About us Section
+//////////////////////////////////////////////////////////////////////////////////*/
+
+@media screen and (min-width: 769px){
+
+  /*  #about-section{
+        padding: 5% 0;
+    }*/
+
+}
+
+#about-section{
+
+    background-color: #f5f5f5;
+}
+
+
+/*box half*/
+
+
+
+
+.img-container{
+
+    position: relative;
+    width: 250px;
+    height: 142px;
+    margin: 0 auto;
+    border: 10px solid #d2d2d2;
+
+}
+
+
+/*//////////////////////////////////////////////////////////////////////////////////
+                                 Purpose Section
+//////////////////////////////////////////////////////////////////////////////////*/
+
+
+.bg-purpose{
+    background: #016b6b url(../hero-img.jpg) no-repeat fixed center;
+    height: 78vh;
+   /* margin-top: -20px;*/
+}
+
+.custom-box{
+    width: 268px;
+    max-width: 100%;
+    height: 155px;
+    color: #000;
+}
+
+
+
+.bg-lightwhite{
+    position: absolute;
+    padding: 30px 22px;
+    background-color: rgba(255, 255, 255, 0.87);
+    width: 85%;
+    top: 12%;
+    left: 13.2%;
+}
+
+
+
+
+
+
+/*//////////////////////////////////////////////////////////////////////////////////
+                                 Gallery Section
+//////////////////////////////////////////////////////////////////////////////////*/
+
+
+#Gallery-section{
+
+    background-color: #f5f5f5;
+}
+
+.bg-gallery{
+    background: #016b6b  no-repeat fixed center;
+    height: 78vh;
+    /* margin-top: -20px;*/
+}
+
+
+
+
+
+
+/*//////////////////////////////////////////////////////////////////////////////////
+                                 Members Section
+//////////////////////////////////////////////////////////////////////////////////*/
+
+
+/*
+#Member-section{
+    height:100vh;
+}
+*/
+
+
+.img-container2{
+    position: absolute;
+    /* padding: 0px 0px; */
+   /* background-color: transparent;*/
+    width: 85%;
+    top: 7%;
+    left: 8%;
+}
+
+
+
+
+
+
+
+
+/*//////////////////////////////////////////////////////////////////////////////////
+                                 Events Section
+//////////////////////////////////////////////////////////////////////////////////*/
+
+
+#events-section{
+    background-color: #f5f5f5;
+}
+
+
+.card{
+
+    background: #ededed;
+    padding: 20px;
+    height: 258px;
+    max-height: 100%;
+    width: 90%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+
+
+
+
+
+
+/*//////////////////////////////////////////////////////////////////////////////////
+                                 Join us Section
+//////////////////////////////////////////////////////////////////////////////////*/
+
+
+
+
+
+
+/*//////////////////////////////////////////////////////////////////////////////////
+                                 clients Section
+//////////////////////////////////////////////////////////////////////////////////*/
+
+
+
+/
+
+
+/*//////////////////////////////////////////////////////////////////////////////////
+                                 Footer Section
+//////////////////////////////////////////////////////////////////////////////////*/
+
+#footer-section{
+    background-color: #54595e;
+    color: #fff;
+}
+
+
+
+
+
+/*CSS Helpers classes*/
+
+.m-0{
+    margin: 0;
+}
+
+
+.m-t-30{
+    margin-top:30px;
+}
+
+.m-t-40{
+    margin-top:40px;
+}
+
+
+.m-b-10{
+    margin-bottom:10px;
+}
+
+.m-b-30{
+    margin-bottom:30px;
+}
+
+.p-0{
+    padding: 0;
+}
+
+
+
+
+.p-l-30{
+    padding-left: 30px;
+}
+
+.p-20{
+    padding: 20px;
+}
+
+.p-30{
+    padding: 30px;
+}
+
+/*
+theme colors*/
+.f-y{
+    color: #fcc73a;
+}
+
+.f-w{
+    color: #ffffff;
+}
+
+.bg-white{
+    background-color: #f5f5f5;
+}
+
+
+
+
+.bg-grey{
+    background: #ededed;
+
+}
+
+.bg-darkgreen{
+    background-color: #016b6b;
+}
+
+/*themecolors end*/

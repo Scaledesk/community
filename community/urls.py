@@ -16,6 +16,9 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from core.views import *
+from django.conf.urls import patterns, include, url
+from django.conf.urls.static import static
+from django.conf import settings
 urlpatterns = [
     # url(r'^core/', include('core.urls')),
     url(r'^admin/', admin.site.urls),
@@ -26,7 +29,8 @@ urlpatterns = [
     url(r"^project",project),
     url(r"^question",QuestionView),
     url(r"^answer",AnswerView),
-
-
-
+    url(r'^answerupdate/(?P<id>[0-9]+)/$', AnswerUpdate, name='answerupdate'),
+    url(r'^answerdelete/(?P<id>[0-9]+)/', AnswerDelete, name='answerdelete'),
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
