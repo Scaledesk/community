@@ -363,4 +363,9 @@ def AnswerDelete(request, id):
 
 @login_required
 def AnswerUpdate(request):
-    return
+    return render(request, "base.html")
+
+
+@login_required
+def Home(request):
+    return render(request, "base.html")

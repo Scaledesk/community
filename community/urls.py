@@ -31,6 +31,7 @@ urlpatterns = [
     url(r"^answer",AnswerView),
     url(r'^answerupdate/(?P<id>[0-9]+)/$', AnswerUpdate, name='answerupdate'),
     url(r'^answerdelete/(?P<id>[0-9]+)/', AnswerDelete, name='answerdelete'),
+    url(r"^home",Home),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
