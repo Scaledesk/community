@@ -16,6 +16,32 @@ from django.core.files.storage import FileSystemStorage
 def index(request):
     return HttpResponse("Hello, You are at the core index.")
 
+def Signup(request):
+    if request.method == 'POST':
+       response_data = {}
+       email = request.POST['email']
+       dipp = request.POST['dipp']
+       try:
+           userData = UserDipp.objects.get(email=email, dipp=dipp)
+           # return redirect("/register")
+
+           response_data['success'] = '/register'
+           return HttpResponse(
+               json.dumps(response_data),
+               content_type="application/json"
+           )
+
+       except Exception as e:
+
+           response_data['error'] = 'Your Email and Dipp not valid!'
+           return HttpResponse(
+               json.dumps(response_data),
+               content_type="application/json"
+           )
+
+    return render(request,'signup.html')
+
+
 
 def CreateUser(request):
     if request.method == 'GET':

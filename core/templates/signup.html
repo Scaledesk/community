@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block content %}
+{% load staticfiles %}
+<section id="signup-section">
+    <div class="container">
+        <div class="card">
+            <div class="row">
+                <div class="col-md-6">
+                    <form action="" method="post">
+
+                          {% csrf_token %}
+                        <h2 class="form-title">Sign up</h2>
+
+                        <div class="form-group">
+                            <input type="number" id="dipp" name="dipp" placeholder="Dipp no" class="form-control" />
+                        </div>
+
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Email" class="form-control" />
+                        </div>
+
+
+                        <div class="form-group">
+                            <button type="button"  class="btn button" onclick="signup(this)">
+                                <span>Verified</span>
+                            </button>
+                        </div>
+
+                    </form>
+
+                    <div id="demo"></div>
+
+
+                </div>
+
+                <div class="col-md-6 text-center">
+                    <img src="{% static 'img/hero-info.png' %}" alt="" width="80%">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+
+
+
+
+
+
+ function signup(res){
+
+var csrfmiddlewaretoken = getCookie('csrftoken');
+
+var email = document.getElementById("email").value;
+var dipp = document.getElementById("dipp").value;
+
+
+   var dd ={"email":email,"dipp":dipp,'csrfmiddlewaretoken':csrfmiddlewaretoken};
+
+   $.ajax({
+     'url': "/signup/",
+     'type':"POST",
+     'dataType':"json",
+     data:dd,
+     success : function(res){
+
+         if(res.success){
+          window.location.replace(res.success);
+
+         }
+         else{
+         document.getElementById("demo").innerHTML=res.error;
+         }
+
+
+     },
+     error:function(res){
+      console.log("some error");
+     }
+   });
+  }
+</script>
+
+
+    {% endblock %}

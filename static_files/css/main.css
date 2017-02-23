@@ -3,11 +3,9 @@
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-html{
-    overflow-x: hidden;
-}
+
 body{
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     line-height: 1.6em;
     overflow-x: hidden;
@@ -16,58 +14,27 @@ body{
 }
 
 a[href]:not([class]){
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 
-/*@font-face {
+@font-face {
     font-family: David-Bold;
     src: url("../fonts/davidbd.ttf");
-}*/
+}
 
 h1{
-   /* font-family: "David-Bold",  "Open Sans" ,sans-serif ;*/
-    font-family: 'Istok Web', sans-serif;
+    font-family: "David-Bold",  "Open Sans" ,sans-serif ;
     color: #191919;
 }
 
-
-h2{font-family: 'Istok Web', sans-serif;
-    font-size: 32px;
-    color: #3a3a3a;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-.h2-custom{
-    position: absolute;
-    padding: 10px;
-    left: -33%;
-    top: 0px;
-}
+/*@media screen and (max-width: 769px){*/
+    /*h1 ,h2,h3,h4,h5,h6{*/
+        /*text-align: center;*/
+    /*}*/
 
 
-
-.p-heading{
-    margin-top: 3%;
-    font-size: 15px;
-    font-weight: 400;
-    text-transform: capitalize;
-    color: #323e4a;
-    text-shadow: 0 0 #88969d;
-}
-
-p{
-    font-size: 14px;
-    line-height: 20px;
-    font-weight: 300;
-    color: #3b4852;
-    font-family: 'Source Sans Pro', sans-serif;
-}
-
-.para-container{
-    padding-left: 20px;
-}
+    /*}*/
 
 
 /*//////////////////////////////////////////////////////////////////////////////////
@@ -75,7 +42,79 @@ p{
 //////////////////////////////////////////////////////////////////////////////////*/
 
 section{
-    padding: 6% 0;
+    padding: 30px 0;
+}
+
+.button{
+    background-color: #ec8244;
+    color: #fff;
+    font-size: 1em;
+    width: 150px;
+    height: 40px;
+    padding: 12px 0;
+    position: relative;
+    border-radius: 0;
+    border: 0;
+    max-width: 100%;
+
+}
+
+.button span{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 40px;
+    transition: all .5s;
+    line-height: 40px;
+}
+
+.button:before{
+    content: "";
+    display: block;
+    background-color: #fff;
+    width: 0;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all .5s;
+    border: 1px solid #e1e1e1;
+
+}
+
+.button:hover:before{
+    width: 150px;
+}
+
+.button:hover span{
+    color: #565a5c;
+}
+
+.button-white{
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+    color: #565a5c;
+}
+
+.button-white:before{
+    content: "";
+    display: block;
+    background-color: #ec8244;
+    width: 0;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all .5s;
+}
+
+.button-white:hover span{
+    color: #fff;
+}
+
+.button-white:hover{
+    color: #fff;
 }
 
 
@@ -229,23 +268,40 @@ nav ul{
     z-index: 1;
 }
 
+.title{
+    font-size: 7vw;
+    color: #494848;
+    z-index: 1;
+    position: relative;
+    text-shadow: -1px 1px 0 #CFD1D3, -2px 2px 0 #CFD1D3, -3px 3px 0 #CFD1D3, -4px 4px 0 #CFD1D3, -5px 5px 0 #CFD1D3, -6px 6px 0 #CFD1D3, -7px 7px 0 #CFD1D3, -8px 8px 0 #CFD1D3, -9px 9px 0 #CFD1D3, -10px 10px 0 #CFD1D3, -11px 11px 0 #CFD1D3, -12px 12px 0 #CFD1D3, -13px 13px 0 #CFD1D3, -14px 14px 0 #CFD1D3, -15px 15px 0 #CFD1D3, -16px 16px 0 #CFD1D3, -17px 17px 0 #CFD1D3, -18px 18px 0 #CFD1D3, -19px 19px 0 #CFD1D3, -20px 20px 0 #CFD1D3, -21px 21px 0 #CFD1D3, -22px 22px 0 #CFD1D3, -23px 23px 0 #CFD1D3, -24px 24px 0 #CFD1D3, -25px 25px 0 #CFD1D3, -26px 26px 0 #CFD1D3, -27px 27px 0 #CFD1D3, -28px 28px 0 #CFD1D3, -29px 29px 0 #CFD1D3, -30px 30px 0 #CFD1D3, -31px 31px 0 #CFD1D3, -32px 32px 0 #CFD1D3, -33px 33px 0 #CFD1D3, -34px 34px 0 #CFD1D3, -35px 35px 0 #CFD1D3, -36px 36px 0 #CFD1D3, -37px 37px 0 #CFD1D3, -38px 38px 0 #CFD1D3, -39px 39px 0 #CFD1D3, -40px 40px 0 #CFD1D3, -41px 41px 0 #CFD1D3, -42px 42px 0 #CFD1D3, -43px 43px 0 #CFD1D3, -44px 44px 0 #CFD1D3, -45px 45px 0 #CFD1D3, -46px 46px 0 #CFD1D3, -47px 47px 0 #CFD1D3, -48px 48px 0 #CFD1D3, -49px 49px 0 #CFD1D3, -50px 50px 0 #CFD1D3, -51px 51px 0 #CFD1D3, -52px 52px 0 #CFD1D3, -53px 53px 0 #CFD1D3, -54px 54px 0 #CFD1D3, -55px 55px 0 #CFD1D3, -56px 56px 0 #CFD1D3, -57px 57px 0 #CFD1D3, -58px 58px 0 #CFD1D3, -59px 59px 0 #CFD1D3, -60px 60px 0 #CFD1D3, -61px 61px 0 #CFD1D3, -62px 62px 0 #CFD1D3, -63px 63px 0 #CFD1D3, -64px 64px 0 #CFD1D3, -65px 65px 0 #CFD1D3, -66px 66px 0 #CFD1D3, -67px 67px 0 #CFD1D3, -68px 68px 0 #CFD1D3, -69px 69px 0 #CFD1D3, -70px 70px 0 #CFD1D3, -71px 71px 0 #CFD1D3, -72px 72px 0 #CFD1D3, -73px 73px 0 #CFD1D3, -74px 74px 0 #CFD1D3, -75px 75px 0 #CFD1D3, -76px 76px 0 #CFD1D3, -77px 77px 0 #CFD1D3, -78px 78px 0 #CFD1D3, -79px 79px 0 #CFD1D3, -80px 80px 0 #CFD1D3, -81px 81px 0 #CFD1D3, -82px 82px 0 #CFD1D3, -83px 83px 0 #CFD1D3, -84px 84px 0 #CFD1D3, -85px 85px 0 #CFD1D3, -86px 86px 0 #CFD1D3, -87px 87px 0 #CFD1D3, -88px 88px 0 #CFD1D3, -89px 89px 0 #CFD1D3, -90px 90px 0 #CFD1D3, -91px 91px 0 #CFD1D3, -92px 92px 0 #CFD1D3, -93px 93px 0 #CFD1D3, -94px 94px 0 #CFD1D3, -95px 95px 0 #CFD1D3, -96px 96px 0 #CFD1D3, -97px 97px 0 #CFD1D3, -98px 98px 0 #CFD1D3, -99px 99px 0 #CFD1D3, -100px 100px 0 #CFD1D3, -101px 101px 0 #CFD1D3, -102px 102px 0 #CFD1D3, -103px 103px 0 #CFD1D3, -104px 104px 0 #CFD1D3, -105px 105px 0 #CFD1D3, -106px 106px 0 #CFD1D3, -107px 107px 0 #CFD1D3, -108px 108px 0 #CFD1D3, -109px 109px 0 #CFD1D3, -110px 110px 0 #CFD1D3, -111px 111px 0 #CFD1D3, -112px 112px 0 #CFD1D3, -113px 113px 0 #CFD1D3, -114px 114px 0 #CFD1D3, -115px 115px 0 #CFD1D3, -116px 116px 0 #CFD1D3, -117px 117px 0 #CFD1D3, -118px 118px 0 #CFD1D3, -119px 119px 0 #CFD1D3, -120px 120px 0 #CFD1D3, -121px 121px 0 #CFD1D3, -122px 122px 0 #CFD1D3, -123px 123px 0 #CFD1D3, -124px 124px 0 #CFD1D3, -125px 125px 0 #CFD1D3, -126px 126px 0 #CFD1D3, -127px 127px 0 #CFD1D3, -128px 128px 0 #CFD1D3, -129px 129px 0 #CFD1D3, -130px 130px 0 #CFD1D3, -131px 131px 0 #CFD1D3, -132px 132px 0 #CFD1D3, -133px 133px 0 #CFD1D3, -134px 134px 0 #CFD1D3, -135px 135px 0 #CFD1D3, -136px 136px 0 #CFD1D3, -137px 137px 0 #CFD1D3, -138px 138px 0 #CFD1D3, -139px 139px 0 #CFD1D3, -140px 140px 0 #CFD1D3, -141px 141px 0 #CFD1D3, -142px 142px 0 #CFD1D3, -143px 143px 0 #CFD1D3, -144px 144px 0 #CFD1D3, -145px 145px 0 #CFD1D3, -146px 146px 0 #CFD1D3, -147px 147px 0 #CFD1D3, -148px 148px 0 #CFD1D3, -149px 149px 0 #CFD1D3, -150px 150px 0 #CFD1D3, -151px 151px 0 #CFD1D3, -152px 152px 0 #CFD1D3, -153px 153px 0 #CFD1D3, -154px 154px 0 #CFD1D3, -155px 155px 0 #CFD1D3, -156px 156px 0 #CFD1D3, -157px 157px 0 #CFD1D3, -158px 158px 0 #CFD1D3, -159px 159px 0 #CFD1D3, -160px 160px 0 #CFD1D3, -161px 161px 0 #CFD1D3, -162px 162px 0 #CFD1D3, -163px 163px 0 #CFD1D3, -164px 164px 0 #CFD1D3, -165px 165px 0 #CFD1D3, -166px 166px 0 #CFD1D3, -167px 167px 0 #CFD1D3, -168px 168px 0 #CFD1D3, -169px 169px 0 #CFD1D3, -170px 170px 0 #CFD1D3, -171px 171px 0 #CFD1D3, -172px 172px 0 #CFD1D3, -173px 173px 0 #CFD1D3, -174px 174px 0 #CFD1D3, -175px 175px 0 #CFD1D3, -176px 176px 0 #CFD1D3, -177px 177px 0 #CFD1D3, -178px 178px 0 #CFD1D3, -179px 179px 0 #CFD1D3, -180px 180px 0 #CFD1D3, -181px 181px 0 #CFD1D3, -182px 182px 0 #CFD1D3, -183px 183px 0 #CFD1D3, -184px 184px 0 #CFD1D3, -185px 185px 0 #CFD1D3, -186px 186px 0 #CFD1D3, -187px 187px 0 #CFD1D3, -188px 188px 0 #CFD1D3, -189px 189px 0 #CFD1D3, -190px 190px 0 #CFD1D3, -191px 191px 0 #CFD1D3, -192px 192px 0 #CFD1D3, -193px 193px 0 #CFD1D3, -194px 194px 0 #CFD1D3, -195px 195px 0 #CFD1D3, -196px 196px 0 #CFD1D3, -197px 197px 0 #CFD1D3, -198px 198px 0 #CFD1D3, -199px 199px 0 #CFD1D3, -200px 200px 0 #CFD1D3, -201px 201px 0 #CFD1D3, -202px 202px 0 #CFD1D3, -203px 203px 0 #CFD1D3, -204px 204px 0 #CFD1D3, -205px 205px 0 #CFD1D3, -206px 206px 0 #CFD1D3, -207px 207px 0 #CFD1D3, -208px 208px 0 #CFD1D3, -209px 209px 0 #CFD1D3, -210px 210px 0 #CFD1D3, -211px 211px 0 #CFD1D3, -212px 212px 0 #CFD1D3, -213px 213px 0 #CFD1D3, -214px 214px 0 #CFD1D3, -215px 215px 0 #CFD1D3, -216px 216px 0 #CFD1D3, -217px 217px 0 #CFD1D3, -218px 218px 0 #CFD1D3, -219px 219px 0 #CFD1D3, -220px 220px 0 #CFD1D3, 0 0 0 #CFD1D3;
+    user-select: none;
+
+}
+
+.title:before{
+    background-image: -webkit-linear-gradient(270deg,#cfd1d3,#e3e4e5);
+    background-image: -moz-linear-gradient(270deg,#cfd1d3,#e3e4e5);
+    background-image: -o-linear-gradient(270deg,#cfd1d3,#e3e4e5);
+    background-image: linear-gradient(180deg,#cfd1d3,#e3e4e5);
+    content: "";
+    display: block;
+    position: absolute;
+    transform: skew(135deg);
+    height: 3.4em;
+    width: 4em;
+    top: 2.07em;
+    left: -3.4em;
+    z-index: 10;
+}
 
 .welcome-message .hero-txt{
     margin-bottom: 20px;
 }
 
 .hero-section {
-
-    background: url("../banner.jpg") no-repeat;
+    background-color: #e9e9e9;
     width: 100%;
-    height:100vh;
-    background-size: cover;
 }
-
-
-
-
-
 
 
 
@@ -261,178 +317,10 @@ nav ul{
 
 @media screen and (min-width: 769px){
 
-  /*  #about-section{
+    #about-section{
         padding: 5% 0;
-    }*/
+    }
 
-}
-
-#about-section{
-
-    background-color: #f5f5f5;
-}
-
-
-/*box half*/
-
-
-
-
-.img-container{
-
-    position: relative;
-    width: 250px;
-    height: 142px;
-    margin: 0 auto;
-    border: 10px solid #d2d2d2;
-
-}
-
-
-/*//////////////////////////////////////////////////////////////////////////////////
-                                 Purpose Section
-//////////////////////////////////////////////////////////////////////////////////*/
-
-
-.bg-purpose{
-    background: #016b6b url(../hero-img.jpg) no-repeat fixed center;
-    height: 78vh;
-   /* margin-top: -20px;*/
-}
-
-.custom-box{
-    width: 268px;
-    max-width: 100%;
-    height: 155px;
-    color: #000;
-}
-
-
-
-.bg-lightwhite{
-    position: absolute;
-    padding: 30px 22px;
-    background-color: rgba(255, 255, 255, 0.87);
-    width: 85%;
-    top: 12%;
-    left: 13.2%;
-}
-
-
-
-
-
-
-/*//////////////////////////////////////////////////////////////////////////////////
-                                 Gallery Section
-//////////////////////////////////////////////////////////////////////////////////*/
-
-
-#Gallery-section{
-
-    background-color: #f5f5f5;
-}
-
-.bg-gallery{
-    background: #016b6b  no-repeat fixed center;
-    height: 78vh;
-    /* margin-top: -20px;*/
-}
-
-
-
-
-
-
-/*//////////////////////////////////////////////////////////////////////////////////
-                                 Members Section
-//////////////////////////////////////////////////////////////////////////////////*/
-
-
-/*
-#Member-section{
-    height:100vh;
-}
-*/
-
-
-.img-container2{
-    position: absolute;
-    /* padding: 0px 0px; */
-   /* background-color: transparent;*/
-    width: 85%;
-    top: 7%;
-    left: 8%;
-}
-
-
-
-
-
-
-
-
-/*//////////////////////////////////////////////////////////////////////////////////
-                                 Events Section
-//////////////////////////////////////////////////////////////////////////////////*/
-
-
-#events-section{
-    background-color: #f5f5f5;
-}
-
-
-.card{
-
-    background: #ededed;
-    padding: 20px;
-    height: 258px;
-    max-height: 100%;
-    width: 90%;
-    max-width: 100%;
-    margin: 0 auto;
-}
-
-
-
-
-
-
-
-/*//////////////////////////////////////////////////////////////////////////////////
-                                 Join us Section
-//////////////////////////////////////////////////////////////////////////////////*/
-
-
-
-
-
-
-/*//////////////////////////////////////////////////////////////////////////////////
-                                 clients Section
-//////////////////////////////////////////////////////////////////////////////////*/
-
-
-
-
-#clients-section{
-    padding: 0 2% 4% 2%;
-
-}
-.client-card{
-width: 96%;
-height: 60px;
-text-align: center;
-/* box-shadow: 0 2px 4px 0 rgba(0,0,0,.23),inset 1px 1px 0 0 hsla(0,0%,100%,.2)!important; */
-/*background-color: rgba(234, 228, 228, 0.52);*/
-border: 1px solid #ededed;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.23), inset 1px 1px 0 0 hsla(0,0%,100%,.2);
-display: flex;
-justify-content: center;
-align-items: center;
-padding: 25px;
-margin: 3px 5px;
-overflow: hidden;
 }
 
 
@@ -441,9 +329,120 @@ overflow: hidden;
 //////////////////////////////////////////////////////////////////////////////////*/
 
 #footer-section{
-padding: 0px;
+    background-color: #54595e;
     color: #fff;
 }
+
+
+
+
+/*//////////////////////////////////////////////////////////////////////////////////
+                                 Sign up Section
+//////////////////////////////////////////////////////////////////////////////////*/
+
+#signup-section{
+    background-color: #f5f5f5;
+    height: 100vh;
+    display: -webkit-flex;
+    -webkit-justify-content: center;
+    -webkit-align-items: center;
+    -moz-justify-content: center;
+    -moz-align-items: center;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.card{
+    background-color: #fff;
+    overflow: inherit;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.23), inset 1px 1px 0 0 hsla(0,0%,100%,.2);
+    padding: 5%;
+}
+
+#signup-section form > h2{
+    color: #ec8244;
+    font-family: "Open Sans", sans-serif;
+    margin: 60px 0 30px 0;
+}
+
+
+ form .form-group input{
+    border-radius: 0;
+    width: 100%;
+    box-shadow: none;
+    background-color: #f6f6f6;
+    border: 1px solid #dadada;
+    padding: 25px;
+
+}
+
+
+form .form-group button {
+    margin: 20px 0;
+
+}
+
+
+/*//////////////////////////////////////////////////////////////////////////////////
+                                 Member profile Section
+//////////////////////////////////////////////////////////////////////////////////*/
+
+@media screen and (min-width: 769px) {
+    #member-profile-section{
+        padding-top: 80px;
+    }
+
+
+    }
+
+#member-profile-section{
+    background-color: #f5f5f5;
+
+}
+
+#member-profile-section .card {
+    padding: 3%;
+}
+
+
+#member-profile-section .joined{
+    position: relative;
+    margin-top: -70px;
+}
+
+
+
+#member-profile-section .joined-d{
+    position: absolute;
+    bottom: -20%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: teal;
+    color: #ffffff;
+    font-size: 13px;
+    transform: translate(-50%);
+}
+
+
+#member-profile-section .joined-d p:not(:last-child){
+    margin: 0;
+    padding-top: 22px;
+
+}
+
+
+#member-profile-section h3{
+    background-color: #1bb2e5;
+    padding: 10px;
+    color: #fff;
+    margin: 0;
+    font-family: 'roboto' , sans-serif;
+    font-weight: 400;
+}
+
 
 
 
@@ -455,75 +454,7 @@ padding: 0px;
     margin: 0;
 }
 
-
-.m-t-30{
-    margin-top:30px;
-}
-
-.m-t-40{
-    margin-top:40px;
-}
-
-
-.m-b-10{
-    margin-bottom:10px;
-}
-
-.m-b-30{
-    margin-bottom:30px;
-}
-
 .p-0{
-    padding: 0;
+    margin: 0;
 }
 
-
-
-
-.p-l-30{
-    padding-left: 30px;
-}
-
-.p-20{
-    padding: 20px;
-}
-
-.p-30{
-    padding: 30px;
-}
-
-/*
-theme colors*/
-.f-y{
-    color: #fcc73a;
-}
-
-.f-w{
-    color: #ffffff;
-}
-
-.bg-grey{
-    background-color: #f5f5f5;
-}
-
-.bg-darkgrey{
-    background-color: #ededed;;
-}
-.bg-white{
-    background-color: #ffffff;
-}
-
-
-
-
-
-.bg-grey{
-    background: #f5f5f5;
-
-}
-
-.bg-darkgreen{
-    background-color: #016b6b;
-}
-
-/*themecolors end*/
