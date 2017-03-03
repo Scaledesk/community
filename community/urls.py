@@ -21,18 +21,19 @@ from django.conf.urls.static import static
 from django.conf import settings
 urlpatterns = [
     # url(r'^core/', include('core.urls')),
+    url(r'^$', Index),
     url(r'^admin/', admin.site.urls),
     url(r"^register/", CreateUser),
-    url(r"^login",login),
-    url(r"^dashboard",dashboard),
-    url(r"^update",update),
-    url(r"^project",project),
-    url(r"^question",QuestionView),
-    url(r"^answer",AnswerView),
+    url(r"^login/",login),
+    url(r"^dashboard/",dashboard),
+    url(r"^update/",update),
+    url(r"^project/",project),
+    url(r"^question/",QuestionView),
+    url(r"^answer/",AnswerView),
     url(r'^answerupdate/(?P<id>[0-9]+)/$', AnswerUpdate, name='answerupdate'),
     url(r'^answerdelete/(?P<id>[0-9]+)/', AnswerDelete, name='answerdelete'),
-    url(r"^home",Home),
-    url(r"^signup",Signup),
+    url(r"^home/",Home),
+    url(r"^signup/",Signup),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

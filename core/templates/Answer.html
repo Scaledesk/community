@@ -1,17 +1,85 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-    <!--<meta charset="UTF-8">-->
-    <!--<title> Show Question </title>-->
-<!--</head>-->
-<!--<body>-->
-<!--&lt;!&ndash;{{questionData}}&ndash;&gt;-->
-<!--<h1>Show Question </h1>-->
- <!--&lt;!&ndash;{{questionData.question}}&ndash;&gt;-->
+{% extends "base.html" %}
+{% block content %}
+    <!--///////////////////////////////////////////////////////////////////////////////////
+                                      Member profile Section
+    ///////////////////////////////////////////////////////////////////////////////////-->
+    <section id="question-paper-list">
+        <div class="container">
+            <br>
+              {{questionData.question }}
 
-    <!--{% for data in questionData %}-->
+              {% for data in questionData %}
+                <div class="card-profile m-b-30">
+                    <div class="row p-30">
+                        <div class="col-md-2 text-center">
+                            <img src="img/test.png" width="60%">
+                            <p class="p-heading f-green f-20"> Lorem Ipsum</p>
+                        </div>
+                        <div class="col-md-10">
+                            <p class="f-30 f-green"> {{ data.question }}</p>
+                            <p class="f-16"> {{ data.question }}</p>
 
-    <!--{{ data.question }}-->
+                            <button type="submit" class="btn btn-primary btn-lg button-custom" data-toggle="collapse" data-target="#demo{{data.id}}">Answer it</button>
+                        </div>
+
+
+
+                    </div> <!--first card end-->
+
+
+
+
+                </div>
+
+                <div id="demo{{data.id}}" class="collapse">
+                <div id="txtEditor"></div>
+                </div>
+                {% for ans in ansData %}
+                    {% if ans.question == data %}
+                        <div class="bg-darkgrey p-30">
+                                    <div class="row">
+                                        <div class="col-md-2 text-center">
+                                            <img src="img/test.png" width="60%">
+                                            <p class="p-heading f-green f-20"> Lorem Ipsum</p>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <p class="f-16"> <span><i class="fa fa-clock-o" aria-hidden="true"></i> 20 Mints ago </span>&nbsp;&nbsp;<span><i class="fa fa-map-marker" aria-hidden="true"></i> New Delhi </span></p>
+                                            <p class="f-16">{{ ans.answerField }}</p>
+
+
+
+                                        </div>
+                                    </div>
+
+                        </div>
+                    {% endif %}
+
+                {% endfor %}
+
+            {% endfor %}
+
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+   <!--<h4> </h4>-->
+
+
+           <!--{% if user == ans.question.profile.userdipp.user %}-->
+
+            <!--<a href="{% url 'answerdelete' ans.id %}">update</a>/<a href="{% url 'answerdelete' ans.id %}">Delete</a>-->
+
+            <!--{% endif %}<br>-->
+
+
      <!--<form action="/answer" method="post" >-->
           <!--{% csrf_token %}-->
         <!--<input type="text" name="answer" id="answer">-->
@@ -19,51 +87,5 @@
          <!--<input type="submit" value="send">-->
      <!--</form>-->
 
-    <!--{% endfor %}-->
 
-
-<!--</body>-->
-<!--</html>-->
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title> Show Question </title>
-</head>
-<body>
-<!--{{questionData}}-->
-<h1>Show Question </h1>
- <!--{{questionData.question}}-->
-
-    {% for data in questionData %}
-
-   <h4> {{ data.question }}</h4>
-    {% for ans in ansData %}
-        {% if ans.question == data %}
-           {{ ans.answerField }}
-             <!--{{ans.question.profile.userdipp.user}}-->
-              <!--{{user.email}}-->
-
-           {% if user == ans.question.profile.userdipp.user %}
-
-            <a href="{% url 'answerdelete' ans.id %}">update</a>/<a href="{% url 'answerdelete' ans.id %}">Delete</a>
-
-            {% endif %}<br>
-
-           {% endif %}
-
-    {% endfor %}
-
-     <form action="/answer" method="post" >
-          {% csrf_token %}
-        <input type="text" name="answer" id="answer">
-         <input type="hidden" name="id" value="{{data.id}}">
-         <input type="submit" value="send">
-     </form>
-    {% endfor %}
-
-
-</body>
-</html>
+{% endblock %}

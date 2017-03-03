@@ -28,20 +28,29 @@ class Profile(models.Model):
       linkedin=models.CharField(max_length=256)
       twitter = models.CharField(max_length=256)
       industry=models.CharField(max_length=100)
+      provideSupport=models.CharField(max_length=500,default=0)
+      needSupport=models.CharField(max_length=500, default=0)
+      PROFILE_TYPE = (("Startup Companies", "Startup Companies"), ("Mentors/Consultants", "Mentors/Consultants"),
+                      ("Investors(Angels/VC Funds)", "Investors(Angels/VC Funds)"), ("Accelerators", "Accelerators")
+                      , ("Incubators", "Incubators"), ("Event Manager", "Event Manager"))
+      profileType = models.CharField(max_length=100,choices=PROFILE_TYPE)
+
       def __unicode__(self):
             return self.companyName
 
 class Project(models.Model):
+      # userdipp = models.OneToOneField(UserDipp)
       profile = models.ForeignKey(Profile)
-      brandName=models.CharField(max_length=100)
-      BUSINESS_TYPE = (("B2B", "B2B"), ("B2C", "B2C"), ("B2B2C", "B2B2C"))
-      typeOfBusiness=models.CharField(max_length=6,choices=BUSINESS_TYPE)
+      companyName = models.CharField(max_length=100)
+      brandName = models.CharField(max_length=100)
+      BUSINESS_TYPE = (("B2B", "B2B"), ("B2C", "B2C"), ("C2B", "C2B"), ("B2B2C", "B2B2C"))
+      typeOfBusiness = models.CharField(max_length=6, choices=BUSINESS_TYPE)
       url = models.CharField(max_length=100)
-      description=models.CharField(max_length=300)
-      logo = models.FileField(upload_to='documents/%Y/%m/%d')
+      description = models.CharField(max_length=300)
+      logo = models.ImageField(upload_to='documents/')
       videoLink = models.CharField(max_length=256)
-      aboutProductCompany=models.FileField(upload_to='documents/%Y/%m/%d')
-      investor = models.CharField(max_length=256)
+      aboutProductCompany = models.CharField(max_length=256)
+      investor =models.ImageField(upload_to='documents/')
 
 class Question(models.Model):
       profile = models.ForeignKey(Profile)

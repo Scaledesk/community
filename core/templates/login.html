@@ -1,19 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login  </title>
-</head>
-<body>
-<form action="/login/" method="post">
-      {% csrf_token %}
-    Email:       {{login_form.email}}<br>
-    Password:     {{login_form.password}}<br>
-     <input type="submit" VALUE="Submit">
-</form>
+{% extends "base.html" %}
+{% block content %}
+{% load staticfiles %}
 
-{{msg}}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+<!--///////////////////////////////////////////////////////////////////////////////////
+                                  Sign up Section
+///////////////////////////////////////////////////////////////////////////////////-->
 
 
-</body>
-</html>
+
+<section id="signup-section">
+    <div class="container">
+        <br>
+
+        <div class="row">
+
+
+            <div class="col-md-6  p-0 hidden-xs">
+
+
+                <div class="login-bg">
+
+                </div>
+
+
+
+            </div>
+
+
+
+            <div class="col-md-6 p-0">
+
+
+                    <div class="form-contain-login">
+                        <div class="form-contain-element">
+                        <h2>Login</h2>
+                        <p>Synth polaroid bitters chillwave pickled. Vegan disrupt tousled.</p>
+
+                        <form  action="/login/" name="login-form" id="girisyap" id="sidebar-user-login" method="post" >
+                                 {% csrf_token %}
+
+                            <div class="form-group">
+                                <label class="control-label" for="inputNormal">Username</label>
+                                <br>
+                                <input type="text" name="email" class="bp-suggestions form-control" cols="50" rows="10" ></input>
+                            </div>
+                            <div class="form-group soninpt">
+                                <label class="control-label" for="inputNormal">Password</label>
+                                <br>
+                                <input type="password" name="password" class="bp-suggestions form-control" cols="50" rows="10"></input>
+                            </div>
+                            <input type="submit" value="Login" class="girisbtn" tabindex="100" />
+                        </form>
+
+                       <!-- <button id="moveleft">Sign Up</button>-->
+                    </div>
+
+
+                    </div>
+        </div>
+        </div>
+
+
+                </div>
+
+
+
+
+</section>
+
+
+
+
+    <!--Email:       {{login_form.email}}<br>-->
+    <!--Password:     {{login_form.password}}<br>-->
+     <!--<input type="submit" VALUE="Submit">-->
+<!--</form>-->
+
+<!--{{msg}}-->
+
+
+
+{% endblock %}

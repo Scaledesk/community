@@ -1,30 +1,129 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Project Works </title>
-</head>
-<body>
-<h1 > Project Works  </h1>
+{% extends "base.html" %}
+{% block content %}
+
+
+
+ <div class="card-profile">
+                    <label class="f-or"> Project / Works</label>
+
 
   <form action="/project" method="post" id="register-form" enctype="multipart/form-data">
       {% csrf_token %}
 
-      Company Name     :- <input id="id_companyName" maxlength="100" name="companyName" type="text" value="{{profile.companyName}}" readonly><br><br>
-      Brand Name       :-  {{projectForm.brandName}}<br><br>
-      Type of Business :-{{projectForm.typeOfBusiness}}<br><br>
-      URL Link         :-{{projectForm.url}}<br><br>
-      Brief Description:-{{projectForm.description}}<br><br>
-      Logo/ image      :- {{projectForm.logo}}<br><br>
-      About the product/company   :- {{projectForm.aboutProductCompany}}<br><br>
-      Video link to embed      :- {{projectForm.videoLink}}<br><br>
-      Investor Deck              :- {{projectForm.investor}}<br><br>
+                <div class="form-group">
+                    <label class="p-heading"  for="name1">  Name </label>
+                  {{projectForm.companyName}}
+                    <!--<input type="text" name="projectname" class="form-control" id="name1" placeholder="Email" >-->
+                </div>
 
-      <input type="submit" value="Submit" >
-  </form>
+                <div class="form-group">
+                    <label class="p-heading"  for="brandname"> Brand Name</label>
+                    {{projectForm.brandName}}
+                    <!--<input type="text" name="projectbrandname" class="form-control" id="brandname" placeholder="Email">-->
+                </div>
 
+                    <div class="row">
+                        <div class="col-md-6">
+                <div class="form-group">
+                    <label class="p-heading"  for="business1"> Type of Business</label>
+                    {{projectForm.typeOfBusiness}}
+                    <!--<select class="form-control" id="business1" name="projectbusiness">-->
+                        <!--<option>B2B</option>-->
+                        <!--<option>B2C</option>-->
+                        <!--<option>C2B</option>-->
+                        <!--<option>B2B2C</option>-->
+
+                    <!--</select>-->
+                </div>
+                        </div>
+
+                        <div class="col-md-6">
+
+                <div class="form-group">
+                    <label class="p-heading"  for="url1">URL link</label>
+                    {{projectForm.url}}
+                    <!--<input type="text" name="projecturl" class="form-control" id="url1" placeholder="Email">-->
+                </div>
+
+                        </div>
+                    </div>
+
+                <div class="form-group">
+                    <label class="p-heading">  Brief Description </label>
+                     {{projectForm.description}}
+                    <!--<textarea class="form-control" name="projectdescription" id="description" placeholer="Brief Description">-->
+                                      <!--</textarea>-->
+                </div>
+
+                <div class="form-group">
+                    <label class="p-heading"  for="aboutc"> About the product/ company</label>
+                    {{projectForm.aboutProductCompany}}
+                    <!--<input type="text" name="projectaboutc" class="form-control" id="aboutc" placeholder=" About the product / company">-->
+                </div>
+
+                <div class="form-group">
+                    <label class="p-heading"  for="videolink"> Video Link to embed</label>
+                    {{projectForm.videoLink}}
+                    <!--<input type="text"  name="projectvideolink" class="form-control" id="videolink" placeholder="Video Link">-->
+                </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+
+                <div class="form-group">
+
+                    <div class="form-group">
+                        <label class="p-heading"> Investor Deck</label>
+                        {{projectForm.investor}}
+                        <!--<input type="file" id="investor" name="projectinvestor">-->
+
+                    </div>
+                </div>
+                        </div>
+
+                    <div class="form-group">
+
+                        <div class="form-group">
+                            <label class="p-heading"> Logo / Image</label>
+                            {{projectForm.logo}}
+                            <!--<input type="file" id="logo" name="projectlogo">-->
+
+                        </div>
+                    </div>
+
+
+                    </div>
+
+
+           <br>
+<div class="row">
+    <div class="col-md-12 text-center">
+            <button type="submit"  class="btn btn-primary btn-lg bg-or">Submit</button>
+</div>
+</div>
+            </form>
 {{msg}}
 
+</div>
 
-</body>
-</html>
+
+
+
+<script type='text/javascript'>
+$(document).ready(function(){
+
+
+ $('input[type="text"]').addClass('form-control');
+ $('input[type="number"]').addClass('form-control');
+ //$('input[type="file"]').addClass('form-control');
+ $('select').addClass('form-control');
+    $("#id_companyName").attr('readonly','readonly');
+
+
+});
+</script>
+{% endblock %}
+
+
+
+

@@ -11,6 +11,7 @@ import json
 from .models import *
 # Create your views here.
 from django.contrib import auth
+from django.core.files import File
 from django.core.files.storage import FileSystemStorage
 
 def index(request):
@@ -24,7 +25,8 @@ def Signup(request):
        try:
            userData = UserDipp.objects.get(email=email, dipp=dipp)
            # return redirect("/register")
-
+           request.session['email'] = email
+           request.session['dipp'] = dipp
            response_data['success'] = '/register'
            return HttpResponse(
                json.dumps(response_data),
@@ -41,73 +43,72 @@ def Signup(request):
 
     return render(request,'signup.html')
 
-
-
+# @login_required(login_url="/login/")
 def CreateUser(request):
-    if request.method == 'GET':
-        register_form = Register()
+    register_form = Register({"dipp":request.session.get('dipp'), "email":request.session.get('email')})
+
 
     if request.method == 'POST':
 
 
-        #  if User.objects.filter(username=self.cleaned_data['email']).exists():
+                                        #
+                    # post = form.save(commit=False)
 
-                email= request.POST['email']
-                dipp = request.POST['dipp']
-                password=request.POST['password']
-                response_data = {}
-                # pprint(dipp)
+                    #  if User.objects.filter(username=self.cleaned_data['email']).exists():
 
-                try:
-                    userData=UserDipp.objects.get(email=email,dipp=dipp)
-                    # pprint(userData.email)
-                    # pprint(userData.dipp)
 
-                    if str(userData.dipp) == str(dipp):
-                        user = User.objects.create_user(email, email, password)
+
+                    email= request.POST['email']
+                    dipp = request.POST['dipp']
+                    password=request.POST['password']
+                    # pprint(registerData)
+                    # response_data = {}
+                    # pprint(dipp)
+                    # pprint(email)
+                    try:
+                            userData = UserDipp.objects.get(email=email, dipp=dipp)
                         # pprint(userData.dipp)
-                        # pprint(userData.email)
-                        up = Profile()
-                        up.userdipp=userData
-                        # up.Profile.object(status=1)
-                        # up.profile = userData
-                        up.companyName = request.POST['companyName']
-                        up.designatePerson = request.POST['designatePerson']
-                        up.founderCofounder = request.POST['founder']
-                        up.website = request.POST['website']
-                        up.mobile = request.POST['mobile']
-                        up.address = request.POST['address']
-                        up.city = request.POST['city']
-                        up.state = request.POST['state']
-                        up.pincode = request.POST['pincode']
-                        up.facebook = request.POST['facebook']
-                        up.linkedin = request.POST['linkedin']
-                        up.twitter = request.POST['twitter']
-                        up.industry = request.POST['industry']
-                        up.save()
-                        userData.status=1
-                        userData.user=user
-                        userData.save()
-                        response_data['result'] = 'Your profile has been created successfully!'
-                        return HttpResponse(
-                            json.dumps(response_data),
-                            content_type="application/json"
-                        )
 
-                    else:  return HttpResponse(
-                                       json.dumps({"result": "Email and Dipp No. does not exist"}),
-                                       content_type="application/json"
-                                          )
+                        # if str(userData.dipp) == str(dipp):
 
-                except Exception as e:
+                            user = User.objects.create_user(email, email, password)
+                            # pprint(data)
+                            # pprint(userData.dipp)
+                            # pprint(userData.email)
+                            up = Profile()
+                            up.userdipp=userData
+                            # up.Profile.object(status=1)
+                            # up.profile = userData
+                            userData.status=1
+                            userData.user=user
+                            userData.save()
 
-                    return HttpResponse(
-                        json.dumps({"result": 'Email and Dipp No. does not exist'}),
-                        content_type="application/json"
-                    )
+                            data = request.POST
+
+                            processed_data = {}
 
 
-    return render(request, 'register.html', { "register":register_form})
+                            for k in data:
+                                processed_data.update({k: (data[k])})
+                            for k in up._meta.fields:
+                                if k.column in processed_data:
+                                    if not k.column is 'id':
+                                        setattr(up, k.column, processed_data[k.column])
+                            # import ipdb;ipdb.set_trace();
+                            up.save()
+
+                            user = authenticate(username=email, password=password)
+                            auth.login(request, user)
+
+                            return redirect('/project/')
+
+
+                    except Exception as e:
+                        return render(request, 'register.html',{"result": "your profile has been already registered","register":register_form})
+
+
+
+    return render(request, 'register.html',{"register":register_form})
 
 
 
@@ -151,46 +152,41 @@ def login(request):
   # if not userData :
   #              raise Http404("No MyModel matches the given query.")
   #
-@login_required
+@login_required(login_url="/login/")
 def dashboard(request):
 
     profileData = Profile.objects.get(userdipp=UserDipp.objects.get(user=request.user))
     return render(request, "dashboard.html",{'profile':profileData})
 
-@login_required
+@login_required(login_url="/login/")
 def update(request):
 
     profileData = Profile.objects.get(userdipp=UserDipp.objects.get(user=request.user))
     response_data = {}
+    updateProfile = Register({"companyName":profileData.companyName, "designatePerson":profileData.designatePerson, "founderCofounder":profileData.founderCofounder,
+                              "website":profileData.website, "mobile":profileData.mobile, "address":profileData.address
+                                 , "city": profileData.city, "state":profileData.state, "pincode":profileData.pincode
+                                 , "facebook": profileData.facebook, "linkedin":profileData.linkedin, "twitter":profileData.twitter
+                                 , "industry": profileData.industry, "provideSupport":profileData.provideSupport, "needSupport":profileData.needSupport})
+
     if request.method == 'POST':
         try:
             up=profileData
-            up.companyName = request.POST['companyName']
-            up.designatePerson = request.POST['designatePerson']
-            up.founderCofounder = request.POST['founder']
-            up.website = request.POST['website']
-            up.mobile = request.POST['mobile']
-            up.address = request.POST['address']
-            up.city = request.POST['city']
-            up.state = request.POST['state']
-            up.pincode = request.POST['pincode']
-            up.facebook = request.POST['facebook']
-            up.linkedin = request.POST['linkedin']
-            up.twitter = request.POST['twitter']
-            up.industry = request.POST['industry']
 
+            data = request.POST
+
+            processed_data = {}
+
+            for k in data:
+                processed_data.update({k: (data[k])})
+            for k in up._meta.fields:
+                if k.column in processed_data:
+                    if not k.column is 'id':
+                        setattr(up, k.column, processed_data[k.column])
+            # import ipdb;ipdb.set_trace();
             up.save()
-            # if
-            # else:
-            #     return render(request, "login.html",
-            #                   {"login_form": login_form, "msg": "Email/Password. does not exist! "})
-            #
 
-            response_data['result'] = 'Your profile has been Updated successfully!'
-            return HttpResponse(
-                json.dumps(response_data),
-                content_type="application/json"
-            )
+            return render(request, "profileUpdate.html", {'profile':updateProfile,"result": "Your profile has been Updated successfully"})
 
 
         except Exception as e:
@@ -198,14 +194,16 @@ def update(request):
             return render(request, "profileUpdate.html", {"profile": profileData, "msg": e})
 
 
-    else :return render(request, "profileUpdate.html",{'profile':profileData})
+    else :return render(request, "profileUpdate.html",{'profile':updateProfile})
 
-@login_required
+@login_required(login_url="/login/")
 def project(request):
 
-    projectForm = ProjectForm()
+    # import ipdb;  ipdb.set_trace()
 
     profileData = Profile.objects.get(userdipp=UserDipp.objects.get(user=request.user))
+    projectForm = ProjectForm({'companyName':profileData.companyName})
+
     if request.method=="POST":
           try:
 
@@ -213,16 +211,17 @@ def project(request):
               pro.profile=profileData
               # pprint(profileData.companyName)
               logo = request.FILES['logo']
-              aboutProductCompany = request.FILES['aboutProductCompany']
-              pprint(aboutProductCompany)
+              investor = request.FILES['investor']
+
 
               fs = FileSystemStorage()
 
               logo = fs.save(logo.name, logo)
               logo_url = fs.url(logo)
               fss = FileSystemStorage()
-              aboutProductCompany = fss.save(aboutProductCompany.name, aboutProductCompany)
-              aboutProductCompany_url = fss.url(aboutProductCompany)
+
+              investor = fss.save(investor.name, investor)
+              investor_url = fss.url(investor)
 
               pro.brandName = request.POST['brandName']
               pro.typeOfBusiness = request.POST['typeOfBusiness']
@@ -230,17 +229,17 @@ def project(request):
               pro.description = request.POST['description']
               pro.logo = logo_url
               pro.videoLink = request.POST['videoLink']
-              pro.aboutProductCompany = aboutProductCompany_url
-              pro.investor = request.POST['investor']
+              pro.aboutProductCompany = request.POST['aboutProductCompany']
+              pro.investor = investor_url
               pro.save()
-              return  render(request, "project.html", {"msg": "Project added successfully." ,"projectForm":projectForm})
+              return redirect("/dashboard/")
           except Exception as e:
                 return render(request, "project.html", {"msg":e ,"projectForm":projectForm})
 
     else :return render(request,"project.html",{"profile":profileData,"projectForm":projectForm})
 
 
-@login_required
+@login_required(login_url="/login/")
 def QuestionView(request):
     questionForm=QuestionForm()
     profileData = Profile.objects.get(userdipp=UserDipp.objects.get(user=request.user))
@@ -307,7 +306,7 @@ def QuestionView(request):
 #
 
 
-@login_required
+# @login_required(login_url="/login/")
 def AnswerView(request):
     ans = Answer()
 
@@ -361,7 +360,7 @@ def AnswerView(request):
 
 
 
-# @login_required
+
 def AnswerDelete(request, id):
     pprint("______________________________________________________________________________")
     # pprint(id)
@@ -387,11 +386,14 @@ def AnswerDelete(request, id):
 
 
 
-@login_required
+@login_required(login_url="/login/")
 def AnswerUpdate(request):
     return render(request, "base.html")
 
 
-@login_required
+@login_required(login_url="/login/")
 def Home(request):
     return render(request, "base.html")
+
+def Index(request):
+    return render (request,"index.html")

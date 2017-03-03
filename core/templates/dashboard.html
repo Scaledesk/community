@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
 
-<h1>Dashboard</h1>
 
-<a href="/update/">Update</a><br>
+
+     <a href="/update/">Update</a><br>
 
     Company Name :- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{profile.companyName}}<br><br>
     Desginate Person :- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{profile.designatePerson}}<br><br>
@@ -24,16 +19,378 @@
     Twitter :- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{profile.twitter}}<br><br>
     Insustry/Sector:- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{profile.industry}}<br><br>
 
+<!--///////////////////////////////////////////////////////////////////////////////////
+                                  Member profile Section
+///////////////////////////////////////////////////////////////////////////////////-->
+
+<section id="member-profile-section">
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-profile">
+                    <div class="row">
+                        <div class="col-md-5 text-center">
+                            <div class="joined">
+                                <img src="img/2.png" alt="" width="250" height="250" class="img-circle">
+                                <div class="joined-d">
+                                    <p class="f-w">Member Since</p>
+                                    <p class="f-w">17 June 2017</p>
+                                </div>
+
+                            </div>
+
+
+                            <ul class="social-list">
+                                <li><a href=""><i class="fa fa-facebook"></i></a></li>
+                                <li><a href=""><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href=""><i class="fa fa-twitter"></i></a></li>
+                                <li><a href=""><i class="fa fa-instagram"></i></a></li>
+                            </ul>
+
+                        </div>
+
+                        <div class="col-md-7">
+                            <div class="card-txt">
+                                <h2>Gaurav Singh</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam atque blanditiis cumque et hic nisi odit quia quibusdam sed velit! Ab beatae doloremque dolorum iure non optio, saepe sunt voluptate. Aliquam atque blanditiis cumque et hic nisi odit quia quibusdam sed velit!</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam atque blanditiis cumque et hic nisi odit quia quibusdam sed velit! Ab beatae doloremque dolorum iure non optio, saepe sunt voluptate.</p>
+
+                                <div class="member-about-strip">
+                                    <p><i class="tags"></i></p>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div> <!--first card end-->
 
 
 
-<!--<form action="/login/" method="post">-->
-      <!--{% csrf_token %}-->
-    <!--Email:       {{login_form.email}}<br>-->
-    <!--Password:     {{login_form.password}}<br>-->
-     <!--<input type="submit" VALUE="Submit">-->
-<!--</form>-->
+            </div>
 
 
-</body>
-</html>
+
+        </div>
+    </div>
+
+        <br><br>
+
+        <div class="row"> <!--second card-->
+            <div class="col-md-12">
+                <div class="card-profile" style="padding:40px;">
+                    <div class="row">
+                        <div class="col-md-2  text-center">
+                            <div class="card">
+                                <i class="fa fa-heartbeat fa-custom" aria-hidden="true"></i>
+
+                            </div>
+                            <p>Procured Health <br>2017 Lorem ips</p>
+
+
+
+
+                        </div>
+
+                        <div class="col-md-2  text-center">
+                            <div class="card">
+                                <i class="fa fa-heartbeat fa-custom" aria-hidden="true"></i>
+
+                            </div>
+                            <p>Procured Health <br>2017 Lorem ips</p>
+
+
+
+
+                        </div>
+
+                        <div class="col-md-2  text-center">
+                            <div class="card">
+                                <i class="fa fa-heartbeat fa-custom" aria-hidden="true"></i>
+
+                            </div>
+                            <p>Procured Health <br>2017 Lorem ips</p>
+
+
+
+
+                        </div>
+
+                        <div class="col-md-2  text-center">
+                            <div class="card">
+                                <i class="fa fa-heartbeat fa-custom" aria-hidden="true"></i>
+
+                            </div>
+                            <p>Procured Health <br>2017 Lorem ips</p>
+
+
+
+
+                        </div>
+
+                        <div class="col-md-2  text-center">
+                            <div class="card">
+                                <i class="fa fa-heartbeat fa-custom" aria-hidden="true"></i>
+
+                            </div>
+                            <p>Procured Health <br>2017 Lorem ips</p>
+
+
+
+
+                        </div>
+
+                        <div class="col-md-2  text-center">
+                            <div class="card">
+                                <i class="fa fa-heartbeat fa-custom" aria-hidden="true"></i>
+
+                            </div>
+                            <p>Procured Health <br>2017 Lorem ips</p>
+
+
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <br><br>
+
+        <div class="row"> <!--second card-->
+            <div class="col-md-12">
+                <div class="card-profile" style="padding:40px;">
+                    <div class="row">
+                        <div class="col-md-2  text-center">
+                            <div class="card">
+                               <img src="img/cli4.png" width="100%">
+
+                            </div>
+                            <p>Procured Health <br>2017 Lorem ips</p>
+
+
+
+
+                        </div>
+
+                        <div class="col-md-2  text-center">
+                            <div class="card">
+                                <img src="img/cli3.png" width="100%">
+
+                            </div>
+                            <p>Procured Health <br>2017 Lorem ips</p>
+
+
+
+
+                        </div>
+
+                        <div class="col-md-2  text-center">
+                            <div class="card">
+                                <img src="img/cli2.png" width="100%">
+
+                            </div>
+                            <p>Procured Health <br>2017 Lorem ips</p>
+
+
+
+
+                        </div>
+
+                        <div class="col-md-2  text-center">
+                            <div class="card">
+                                <img src="img/cli1.png" width="100%">
+
+                            </div>
+                            <p>Procured Health <br>2017 Lorem ips</p>
+
+
+
+
+                        </div>
+
+                        <div class="col-md-2  text-center">
+                            <div class="card">
+                                <img src="img/cli4.png" width="100%">
+
+                            </div>
+                            <p>Procured Health <br>2017 Lorem ips</p>
+
+
+
+
+                        </div>
+
+                        <div class="col-md-2  text-center">
+                            <div class="card">
+                                <img src="img/cli3.png" width="100%">
+
+                            </div>
+                            <p>Procured Health <br>2017 Lorem ips</p>
+
+
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <br><br>
+
+        <div class="row"> <!--Fourth card-->
+            <div class="col-md-12">
+                <div class="card-profile">
+                    <div class="row">
+                        <div class="col-md-6 right-border">
+                           <p class="p-heading">Education</p>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-md-2">
+                            <img src="img/Cornell.png" width="90%">
+                                    </div>
+
+
+                                <div class="col-md-10">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.assumenda aut corporis debitis dolor doloremque dolorndus sit tempore ullam.</p>
+                                </div>
+                            </div>
+
+                            <br><br>
+
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <img src="img/Cornell.png" width="90%">
+                                </div>
+
+
+                                <div class="col-md-10">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.assumenda aut corporis debitis dolor doloremque dolorndus sit tempore ullam.</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <p class="p-heading">About</p>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquid assumenda at corporis debitis delectus est eumte tempora veniam,dolor sit corporis debitis delectus est eumte temp amet, consectetur adipisicing elit. Ad aliquid assumenda at corporis debitis delectus estcorporis debitis delectus est eumte temp.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur dolor sit amet, consectetur adipisicing elit. Ad aliquid assumenda at corporis debitis delectus est eumte tempora veniam,dolor sit corporis debitis delectus est eumte temp amet, consectetur adipisicing elit.Delectus estcorporis adipisicing elit. Ad aliquid assumenda at corporis debitis.</p>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <br><br>
+
+        <div class="row"> <!--fivth card-->
+            <div class="col-md-12">
+                <div class="card-profile">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p class="p-heading">Education</p>
+                            </div>
+                        </div>
+                    <div class="row">
+                        <div class="col-md-3">
+
+<img src="img/hero-img.jpg" width="100%">
+                        </div>
+
+                        <div class="col-md-9">
+
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquid assumenda at corporis debitis delectus est eumte tempora veniam, voluptatibus?</p>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <br><br>
+
+        <div class="row"> <!--six card-->
+            <div class="col-md-12 text-center">
+
+
+
+                            <p class="p-heading">Education</p>
+
+                          <img src="img/about.png" width="40%">
+
+
+
+            </div>
+
+        </div>
+
+        <br><br>
+
+        <div class="row"> <!--seven card-->
+            <div class="col-md-12">
+                <p class="p-heading">Education</p>
+                <div class="card-profile">
+                    <div class="row">
+                        <div class="col-md-4">
+
+
+                           <img src="img/pdf.png" width="100%">
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <img src="img/ppt.png" width="100%">
+                        </div>
+
+                        <div class="col-md-4">
+                            <p class="p-heading">Education</p>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet aperiam assumenda aut corporis debitis dolor doloremque dolorndus sit tempore ullam.</p>
+
+
+                        </div>
+
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+    </div>
+</section>
+
+
+
+
+{% endblock %}

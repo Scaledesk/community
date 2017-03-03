@@ -1,97 +1,294 @@
 {% extends "base.html" %}
 {% block content %}
-<form action="" method="post" id="register-form">
-      {% csrf_token %}
-    Dipp No. {{register.dipp}}<br><br>
-    Email {{register.email}}<br><br>
-    Company Name :{{register.companyName}}<br><br>
-    Desginate Person :{{register.designatePerson}}<br><br>
-    Founder/Co-Founder :{{register.founderCofounder}}<br><br>
-    website :{{register.website}}<br><br>
-    Mobile :{{register.mobile}}<br><br>
-    Address :{{register.address}}<br><br>
-    City  :{{register.city}}<br><br>
-    State :{{register.state}}<br><br>
-    Pincode :{{register.pincode}}<br><br>
-    Facebook Id :{{register.facebook}}<br><br>
-    Linkedin Id :{{register.linkedin}}<br><br>
-    Twitter :{{register.twitter}}<br><br>
-    Insustry/Sector:{{register.industry}}<br><br>
-    Password:{{register.password}}<br><br>
 
-
-    <input type="button" VALUE="Submit" onclick="register(this)">
-</form>
-<div id="demo"></div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script>
-
-function getCookie(name) {
-    var cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = jQuery.trim(cookies[i]);
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
+<!--///////////////////////////////////////////////////////////////////////////////////
+                                  Sign up Section
+///////////////////////////////////////////////////////////////////////////////////-->
 
 
 
+<section id="member-profile-section">
+
+        <br>
+
+        <div class="container">
+
+           <form action="/register/" method="POST" id="register-form" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+
+            <div class="row">
+                <div class="col-md-6">
+
+
+<div class="card-profile">
+                <label class="f-or">Account</label>
+
+                <div class="form-group">
+                    <label class="p-heading" for="designateperson">Designate Person</label>
+                    {{register.designatePerson}}
+                    <!--<input type="text" name="designatePerson" class="form-control" id="designateperson" placeholder="Designate Person">-->
+                </div>
+
+                <div class="form-group">
+                    <label  class="p-heading"  for="exampleInputEmail1">Email address</label>
+                    {{register.email}}
+                    <!--<input type="email" name="email" class="form-control" id="exampleInputEmail1"  readonly value="{{ request.session.email }} ">-->
+                </div>
+
+                <div class="form-group">
+                    <label class="p-heading"  for="exampleInputPassword1">Password</label>
+                    {{register.password}}
+           <!--11         <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">-->
+                </div>
+                <div class="form-group">
+                    <label class="p-heading"  for="exampleInputPassword1">Profile Type</label>
+                    {{register.profileType}}
+           <!--11         <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">-->
+                </div>
+
+
+</div>
+
+                    <br>
+
+                    <div class="card-profile">
+                        <label class="f-or">CONTACT DETAILS</label>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                            <label  class="p-heading"  for="mobile1">Mobile</label>
+                             {{register.mobile}}
+                            <!--<input type="number"  name="mobile" class="form-control" id="mobile1" placeholder="Mobile">-->
+                               </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                            <label  class="p-heading"  for="pincode1">PINCODE</label>
+                                    {{register.pincode}}
+                            <!--<input type="number" name="pincode" class="form-control" id="pincode1" placeholder="PINCODE">-->
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label  class="p-heading"  for="address1">  Address </label>
+                            {{register.address}}
+                            <!--<input type="text" name="address" class="form-control" id="address1" placeholder="Address">-->
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+
+                        <div class="form-group">
+                            <label class="p-heading"  for="city1">City</label>
+                            {{register.city}}
+                            <!--<input type="text" name="city" class="form-control" id="city1" placeholder="City">-->
+                        </div>
+                            </div>
+
+                            <div class="col-md-6">
+
+                        <div class="form-group">
+                            <label class="p-heading"  for="State1">State</label>
+                            {{register.state}}
+                            <!--<input type="text" name="state" class="form-control" id="State1" placeholder="State">-->
+                        </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+                <div class="col-md-6">
+
+                <div class="card-profile">
+
+                    <label class="f-or">COMPANY</label>
+                <div class="form-group">
+                    <label class="p-heading"  for="dippno">DIPP No</label>
+                    {{register.dipp}}
+                    <!--<input type="number" name="dipp" class="form-control" id="dippno" readonly value="{{ request.session.dipp }}">-->
+                </div>
+
+
+                <div class="form-group">
+                    <label class="p-heading"  for="companyname">Company Name</label>
+                    {{register.companyName}}
+                    <!--<input type="text" name="companyName" class="form-control" id="companyname" placeholder="Company Name">-->
+                </div>
+
+
+
+                <div class="form-group">
+                    <label class="p-heading"  for="founder1"> Founder/ Co-Founder</label>
+                    {{register.founderCofounder}}
+                    <!--<input type="text" name="founder" class="form-control" id="founder1" placeholder="Founder/ Co-Founder">-->
+                </div>
+
+                <div class="form-group">
+                    <label class="p-heading"  for="website1"> Website</label>
+                    {{register.website}}
+                    <!--<input type="text" name="website" class="form-control" id="website1" placeholder="Website">-->
+                </div>
+
+
+                <div class="form-group">
+                    <label class="p-heading"> Industry/ Sector </label>
+                    <!--<input type="text" class="form-control" id="sector1" placeholder="Industry/ Sector">-->
+                     {{register.industry}}
+                    <!--<select class="form-control" id="sector" name="industry">-->
+                        <!--<option>1</option>-->
+                        <!--<option>2</option>-->
+                        <!--<option>3</option>-->
+                        <!--<option>4</option>-->
+                        <!--<option>5</option>-->
+                    <!--</select>-->
+                </div>
+
+                <div class="form-group">
+                    <label class="p-heading" >PROVIDE support and help for</label>
+                    <!--<input type="text" class="form-control" id="providesupport" placeholder="Email">-->
+                    {{register.provideSupport}}
+                    <!--<input type="text" id="providesupport" name="providesupport" value="Amsterdam,Washington" data-role="tagsinput" />-->
+                    <script>
+                        var citynames = new Bloodhound({
+                            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+                            queryTokenizer: Bloodhound.tokenizers.whitespace,
+                            prefetch: {
+                                url: 'assets/citynames.json',
+                                filter: function(list) {
+                                    return $.map(list, function(cityname) {
+                                        return { name: cityname }; });
+                                }
+                            }
+                        });
+                        citynames.initialize();
+
+                        $('input').tagsinput({
+                            typeaheadjs: {
+                                name: 'citynames',
+                                displayKey: 'name',
+                                valueKey: 'name',
+                                source: citynames.ttAdapter()
+                            }
+                        });
+                    </script>
+                </div>
+
+                    <div class="form-group">
+                        <label class="p-heading" >NEED Support And Help For</label>
+                        <!--<input type="text" class="form-control" id="providesupport" placeholder="Email">-->
+                        {{register.needSupport}}
+                        <!--<input type="text" id="needsupport" name="needsupport" value="Amsterdam,Washington" data-role="tagsinput" />-->
+                        <script>
+                            var citynames = new Bloodhound({
+                                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+                                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                                prefetch: {
+                                    url: 'assets/citynames.json',
+                                    filter: function(list) {
+                                        return $.map(list, function(cityname) {
+                                            return { name: cityname }; });
+                                    }
+                                }
+                            });
+                            citynames.initialize();
+
+                            $('input').tagsinput({
+                                typeaheadjs: {
+                                    name: 'citynames',
+                                    displayKey: 'name',
+                                    valueKey: 'name',
+                                    source: citynames.ttAdapter()
+                                }
+                            });
+                        </script>
+                    </div>
+
+
+                    </div>
+
+
+                <br>
+
+
+
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card-profile">
+                        <label class="f-or">SOCIAL CONNECT</label>
+
+
+                        <div class="form-group">
+                            <label class="p-heading"  for="fbid"> Facebook ID</label>
+                            {{register.facebook}}
+                            <!--<input type="text" name="facebook" class="form-control" id="fbid" placeholder="Email">-->
+                        </div>
+
+                        <div class="form-group">
+                            <label class="p-heading"  for="lid">Linkedin ID</label>
+                            {{register.linkedin}}
+
+                            <!--<input type="text" name="linkedin" class="form-control" id="lid" placeholder="Email">-->
+                        </div>
+
+                        <div class="form-group">
+                            <label class="p-heading"  for="twitter"> Twitter</label>
+                            {{register.twitter}}
+                            <!--<input type="text" name="twitter" class="form-control" id="twitter" placeholder="Email">-->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+<br>
+<div class="row">
+    <div class="col-md-12 text-center">
+            <button type="submit"  class="btn btn-primary btn-lg bg-or">Submit</button>
+</div>
+</div>
+            </form>
+   <div id="demo"> {{result}}</div>
+        </div>
 
 
 
 
- function register(res){
+</section>
 
-var csrfmiddlewaretoken = getCookie('csrftoken');
-
-var email = document.getElementById("id_email").value;
-var dipp = document.getElementById("id_dipp").value;
- var companyName = document.getElementById("id_companyName").value;
- var designatePerson = document.getElementById("id_designatePerson").value;
-  var founder = document.getElementById("id_founderCofounder").value;
-  var website = document.getElementById("id_website").value;
-   var mobile = document.getElementById("id_mobile").value;
-    var address = document.getElementById("id_address").value;
-     var city = document.getElementById("id_city").value;
-      var state = document.getElementById("id_state").value;
-       var pincode = document.getElementById("id_pincode").value;
-        var facebook = document.getElementById("id_facebook").value;
-         var linkedin = document.getElementById("id_linkedin").value;
-          var twitter = document.getElementById("id_twitter").value;
-           var industry = document.getElementById("id_industry").value;
-           var password = document.getElementById("id_password").value;
+<script type='text/javascript'>
+$(document).ready(function(){
 
 
-   var dd ={"companyName":companyName,"designatePerson":designatePerson,"founder":founder,
-             "website":website,"mobile":mobile,"address":address,"city":city,"state":state,"pincode":pincode,
-             "facebook":facebook,"linkedin":linkedin,"twitter":twitter,"industry":industry,"email":email,"dipp":dipp,
-             'csrfmiddlewaretoken':csrfmiddlewaretoken,"password":password};
+ $('input[type="text"]').addClass('form-control');
+ $('input[type="password"]').addClass('form-control');
+ $('input[type="number"]').addClass('form-control');
+ $('input[type="email"]').addClass('form-control');
+ //$('input[type="file"]').addClass('form-control');
+ $('select').addClass('form-control');
 
-   $.ajax({
-     'url': "/register/",
-     'type':"POST",
-     'dataType':"json",
-     data:dd,
-     success : function(res){
 
-      document.getElementById("demo").innerHTML=res.result;
+    $("#id_email").attr('readonly','readonly');
+    $("#id_dipp").attr('readonly','readonly');
 
-     },
-     error:function(res){
-      console.log("some error");
-     }
-   });
-  }
+
+});
 </script>
+
 
 
 {% endblock %}
