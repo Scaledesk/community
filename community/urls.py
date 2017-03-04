@@ -34,6 +34,14 @@ urlpatterns = [
     url(r'^answerdelete/(?P<id>[0-9]+)/', AnswerDelete, name='answerdelete'),
     url(r"^home/",Home),
     url(r"^signup/",Signup),
+    # url(r"^singleprofile/", SingleProfile),
+    url(r"^menberlist/", ProfileList),
+    url(r'^profiledetails/(?P<id>[0-9]+)/', ProfileDetails),
+    url(r"^mailSend/", mailSend),
+
+
+
+
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

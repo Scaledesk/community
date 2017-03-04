@@ -49,7 +49,7 @@ class Project(models.Model):
       description = models.CharField(max_length=300)
       logo = models.ImageField(upload_to='documents/')
       videoLink = models.CharField(max_length=256)
-      aboutProductCompany = models.CharField(max_length=256)
+      aboutProductCompany = models.FileField(upload_to='documents/')
       investor =models.ImageField(upload_to='documents/')
 
 class Question(models.Model):

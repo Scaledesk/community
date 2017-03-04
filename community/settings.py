@@ -124,3 +124,10 @@ STATICFILES_DIRS=['static_files',]
 
 MEDIA_ROOT=os.path.join(BASE_DIR,'media/documents/')
 MEDIA_URL='/media/documents/'
+
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'sub5.mail.dreamhost.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'nitesh@scaledesk.com'
+EMAIL_HOST_PASSWORD = 'qazplmq1w2e3r4'

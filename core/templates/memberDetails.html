@@ -1,0 +1,454 @@
+{% extends "base.html" %}
+{% block content %}
+{% load staticfiles %}
+
+
+<!--///////////////////////////////////////////////////////////////////////////////////
+                                  Member profile Section
+///////////////////////////////////////////////////////////////////////////////////-->
+
+<section id="member-profile-section">
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-profile">
+                    <div class="row">
+                        <div class="col-md-5 text-center">
+                            <div class="joined">
+                                <img src="{% static 'img/2.png' %}" alt="" width="250" height="250" class="img-circle">
+                                <div class="joined-d">
+                                    <p class="f-w">Member Since</p>
+                                    <p class="f-w">17 June 2017</p>
+                                </div>
+
+                            </div>
+                           {{profileData.facebook}}
+                            {{profile}}
+                            <ul class="social-list">
+                                <li><a href="{{profile.facebook }}"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href=""><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="{{ profile.twitter }}"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href=""><i class="fa fa-instagram"></i></a></li>
+                            </ul>
+
+                        </div>
+
+                        <div class="col-md-7">
+                            <div class="card-txt">
+                                <h2>{{ profile.designatePerson }}</h2>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam atque blanditiis cumque et hic nisi odit quia quibusdam sed velit! Ab beatae doloremque dolorum iure non optio, saepe sunt voluptate. Aliquam atque blanditiis cumque et hic nisi odit quia quibusdam sed velit!</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam atque blanditiis cumque et hic nisi odit quia quibusdam sed velit! Ab beatae doloremque dolorum iure non optio, saepe sunt voluptate.</p>
+<br>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                <div class="member-about-strip">
+                                    <p><i class="fa fa-tags" aria-hidden="true"></i> <span class="tags">Website :</span>
+                                        {{ profile.website }}</p>
+
+                                </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="member-about-strip">
+                                            <p><i class="fa fa-building-o" aria-hidden="true"></i> <span class="tags">Sector :</span> {{ profile.industry }}</p>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div> <!--first card end-->
+
+
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+        <br><br>
+
+        <div class="row"> <!--second card-->
+            <div class="col-md-12">
+                <div class="card-profile" style="padding:40px;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="container">
+                            <p class="p-heading f-green">PROVIDE SUPPORT AND HELP FOR</p>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+
+                        <div class="col-md-2  text-center">
+                            <div class="card">
+                                <i class="fa fa-wrench fa-custom" aria-hidden="true"></i>
+
+                            </div>
+                            <p>Product Development</p>
+
+
+
+
+                        </div>
+
+                        <div class="col-md-2  text-center">
+                            <div class="card">
+                                <i class="fa fa-bullseye fa-custom" aria-hidden="true"></i>
+
+                            </div>
+                            <p>Strategy Design and Implimentation</p>
+
+
+
+
+                        </div>
+
+                        <div class="col-md-2  text-center">
+                            <div class="card">
+                                <i class="fa fa-usd fa-custom" aria-hidden="true"></i>
+
+                            </div>
+                            <p>Investment Consultancy</p>
+
+
+
+
+                        </div>
+
+                        <div class="col-md-2  text-center">
+                            <div class="card">
+                                <i class="fa fa-mobile fa-custom" aria-hidden="true"></i>
+
+                            </div>
+                            <p>Android App Development</p>
+
+
+
+
+                        </div>
+
+                        <div class="col-md-2  text-center">
+                            <div class="card">
+                                <i class="fa fa-lightbulb-o fa-custom" aria-hidden="true"></i>
+
+                            </div>
+                            <p>Business Plan</p>
+
+
+
+
+                        </div>
+
+                        <div class="col-md-2  text-center">
+                            <div class="card">
+                                <i class="fa fa-heartbeat fa-custom" aria-hidden="true"></i>
+
+                            </div>
+                            <p>Brand Building</p>
+
+
+
+
+                        </div>
+                    </div>
+                    <br>
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <br><br>
+
+        <div class="row"> <!--second card-->
+            <div class="col-md-12">
+                <div class="card-profile" style="padding:40px;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="container">
+                                <p class="p-heading f-green">NEED SUPPORT AND HELP FOR</p>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+
+                    <div class="row">
+
+                        <div class="col-md-2  text-center">
+                            <div class="card">
+                                <i class="fa fa-wrench fa-custom" aria-hidden="true"></i>
+
+                            </div>
+                            <p>Product Development</p>
+
+
+
+
+                        </div>
+
+                        <div class="col-md-2  text-center">
+                            <div class="card">
+                                <i class="fa fa-bullseye fa-custom" aria-hidden="true"></i>
+
+                            </div>
+                            <p>Strategy Design and Implimentation</p>
+
+
+
+
+                        </div>
+
+                        <div class="col-md-2  text-center">
+                            <div class="card">
+                                <i class="fa fa-usd fa-custom" aria-hidden="true"></i>
+
+                            </div>
+                            <p>Investment Consultancy</p>
+
+
+
+
+                        </div>
+
+                        <div class="col-md-2  text-center">
+                            <div class="card">
+                                <i class="fa fa-mobile fa-custom" aria-hidden="true"></i>
+
+                            </div>
+                            <p>Android App Development</p>
+
+
+
+
+                        </div>
+
+                        <div class="col-md-2  text-center">
+                            <div class="card">
+                                <i class="fa fa-lightbulb-o fa-custom" aria-hidden="true"></i>
+
+                            </div>
+                            <p>Business Plan</p>
+
+
+
+
+                        </div>
+
+                        <div class="col-md-2  text-center">
+                            <div class="card">
+                                <i class="fa fa-heartbeat fa-custom" aria-hidden="true"></i>
+
+                            </div>
+                            <p>Brand Building</p>
+
+
+
+
+                        </div>
+                    </div>
+                    <br>
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <br><br>
+
+        <div class="row"> <!--Fourth card-->
+            <div class="col-md-12">
+                <div class="card-profile">
+                    <div class="row">
+                        <div class="col-md-6 right-border">
+                           <p class="p-heading">Education</p>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-md-2">
+                            <img src="img/Cornell.png" width="90%">
+                                    </div>
+
+
+                                <div class="col-md-10">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.assumenda aut corporis debitis dolor doloremque dolorndus sit tempore ullam.</p>
+                                </div>
+                            </div>
+
+                            <br><br>
+
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <img src="img/Cornell.png" width="90%">
+                                </div>
+
+
+                                <div class="col-md-10">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.assumenda aut corporis debitis dolor doloremque dolorndus sit tempore ullam.</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <p class="p-heading">About</p>
+
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aliquid assumenda at corporis debitis delectus est eumte tempora veniam,dolor sit corporis debitis delectus est eumte temp amet, consectetur adipisicing elit. Ad aliquid assumenda at corporis debitis delectus estcorporis debitis delectus est eumte temp.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur dolor sit amet, consectetur adipisicing elit. Ad aliquid assumenda at corporis debitis delectus est eumte tempora veniam,dolor sit corporis debitis delectus est eumte temp amet, consectetur adipisicing elit.Delectus estcorporis adipisicing elit. Ad aliquid assumenda at corporis debitis.</p>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+        <br><br>
+
+       <!--fivth card-->
+
+
+                <div class="card-profile">
+                    <div class="row">
+                        <div class="col-md-12">
+                    <p class="p-heading f-green">PROJECT/WORK</p>
+                        </div>
+                    </div>
+                    <br>
+                    {{projectData.brandName}}
+                         {% for data in project %}
+                             <div class="row">
+                        <div class="col-md-6">
+
+                            <div class="row">
+                                <div class="col-xs-2">
+                                    <img src="{{ data.logo }}" width="100%">
+
+                                </div>
+                                <div class="col-xs-10">
+                                    <p class="p-heading">{{ data.companyName }}</p>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <p><span class="p-heading">Brand:</span>&nbsp;<span>{{ data.brandName }}</span></p>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <p><span class="p-heading">Type of Business:</span>&nbsp;<span>{{ data.typeOfBusiness }}</span></p>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                                <p><span class="p-heading">About the Product:</span>&nbsp;<span>{{ data.aboutProductCompany }}</span>&nbsp;&nbsp;&nbsp;<span class="f-green">Download</span></p>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-xs-12">
+                                            <p><span class="p-heading">Investor Deck:</span>&nbsp;<span>{{ data.investor }}</span>&nbsp;&nbsp;&nbsp;<span class="f-green">Download</span></p>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6">
+                            <p class="p-heading">Description</p>
+
+                            <p>{{ data.description }}</p>
+
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <p><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;<a href="#">http://dcwdfchdcushsdc-dfbjdcbhb</a></p>
+
+
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+
+                                <div class="col-xs-12">
+                                    <p> <i class="fa fa-caret-square-o-right" aria-hidden="true"></i>&nbsp;<a href="#">http://dcwdfchdcushsdc-dfbjdcbhb</a></p>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+
+
+                    </div>
+                         {% endfor %}
+                    <hr>
+                    <br>
+
+
+
+                </div>
+
+
+
+
+
+        <br><br>
+
+        <div class="row"> <!--six card-->
+            <div class="col-md-12 text-center">
+
+
+
+                            <p class="p-heading f-green">Video</p>
+
+                          <img src="img/about.png" width="40%">
+
+
+
+            </div>
+
+        </div>
+
+        <br><br>
+
+
+
+
+
+
+
+    </div>
+</section>
+
+
+
+
+
+{% endblock %}

@@ -62,7 +62,7 @@ class ProjectForm(forms.Form):
     description = forms.CharField(max_length=300)
     logo = forms.ImageField(label='Select a file', help_text='max. 2 megabytes')
     videoLink = forms.CharField(max_length=256)
-    aboutProductCompany = forms.CharField(max_length=256)
+    aboutProductCompany = forms.FileField(label='Select a file', help_text='max. 2 megabytes')
     investor = forms.ImageField(label='Select a file', help_text='max. 2 megabytes')
 
 class QuestionForm(forms.Form):

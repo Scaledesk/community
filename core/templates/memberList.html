@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+{% load staticfiles %}
+
+
+<!--///////////////////////////////////////////////////////////////////////////////////
+                                  section Start
+///////////////////////////////////////////////////////////////////////////////////-->
+
+        <section id="member-profile-section">
+
+                <div class="row bg-lightgreen" style="padding:30px;">
+                    <div class="col-xs-12 ">
+                        <div class="input-group" style="width:80%;margin: 0 auto;">
+                            <input type="text" class="form-control search-control" placeholder="Search your company">
+                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="container">
+
+                    <br>
+
+                         {{profileData.companyName}}
+                         {% for data in profile %}
+
+                                <div class="row">
+                                    <div class="col-md-3 text-center">
+                                        <div class="card-profile custom-box-footer">
+                                            <a href="/profiledetails/{{data.id}}">
+                                                <img src="{% static 'img/test.png' %}"/>
+                                                <p class="p-heading">{{ data.companyName }}</p>
+                                                <p>{{ data.industry }}</p>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+
+                                </div> <!--first card end-->
+                    {% endfor %}
+
+                    <br><br>
+
+
+
+            </div>
+        </section>
+
+
+
+{% endblock %}

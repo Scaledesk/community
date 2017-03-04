@@ -13,6 +13,8 @@ from .models import *
 from django.contrib import auth
 from django.core.files import File
 from django.core.files.storage import FileSystemStorage
+from django.core.mail import EmailMessage
+
 
 def index(request):
     return HttpResponse("Hello, You are at the core index.")
@@ -212,7 +214,7 @@ def project(request):
               # pprint(profileData.companyName)
               logo = request.FILES['logo']
               investor = request.FILES['investor']
-
+              aboutProductCompany = request.FILES['aboutProductCompany']
 
               fs = FileSystemStorage()
 
@@ -223,13 +225,21 @@ def project(request):
               investor = fss.save(investor.name, investor)
               investor_url = fss.url(investor)
 
+
+              fsss = FileSystemStorage()
+
+              aboutProductCompany = fsss.save(aboutProductCompany.name, aboutProductCompany)
+              aboutProductCompany_url = fsss.url(aboutProductCompany)
+
+
+
               pro.brandName = request.POST['brandName']
               pro.typeOfBusiness = request.POST['typeOfBusiness']
               pro.url = request.POST['url']
               pro.description = request.POST['description']
               pro.logo = logo_url
               pro.videoLink = request.POST['videoLink']
-              pro.aboutProductCompany = request.POST['aboutProductCompany']
+              pro.aboutProductCompany = aboutProductCompany_url
               pro.investor = investor_url
               pro.save()
               return redirect("/dashboard/")
@@ -396,4 +406,33 @@ def Home(request):
     return render(request, "base.html")
 
 def Index(request):
+    return render (request,"index.html")
+
+def ProfileList(request):
+    profileData=Profile.objects.all()
+    # projectData = Project.objects.all()
+
+    return render (request,"memberList.html",{"profile":profileData})
+
+
+
+
+def ProfileDetails(request,id):
+
+
+    profileData = Profile.objects.get(pk=id)
+    # pprint(profileData.companyName)
+    projectData = Project.objects.filter(profile=profileData)
+
+    # pprint(profileData.companyName)
+    # data = Question.objects.get(pk=Answer.objects.get(ans.answerField))
+
+    # pprint(profileData)
+    # pprint(projectData)
+
+    return render (request,"memberDetails.html",{'profile':profileData,'project':projectData})
+
+def mailSend(request):
+    email = EmailMessage('Hello', 'Django', to=['nkscoder@gmail.com'])
+    email.send()
     return render (request,"index.html")
