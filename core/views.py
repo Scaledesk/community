@@ -112,9 +112,27 @@ def CreateUser(request):
 
     return render(request, 'register.html',{"register":register_form})
 
+def password(request):
+
+    if request.method=="POST":
+        oldPassword=request.POST['oldPassword']
+        newPassword = request.POST['newPassword']
+        confPassword = request.POST['confPassword']
+        # user = request.user
+        if newPassword == confPassword:
+                try:
+                    user = authenticate(username=request.user, password=oldPassword)
+                    user.set_password('newPassword')
+                    user.save()
+                    return redirect("/dashboard/")
 
 
+                except Exception as e:
+                    return redirect("/dashboard/")
+        else:
+             return redirect("/dashboard/")
 
+    else:  return render(request, "dashboard-setting.html")
 
 
 def login(request):
@@ -156,9 +174,24 @@ def login(request):
   #
 @login_required(login_url="/login/")
 def dashboard(request):
-
     profileData = Profile.objects.get(userdipp=UserDipp.objects.get(user=request.user))
-    return render(request, "dashboard.html",{'profile':profileData})
+    response_data = {}
+    userdata=UserDipp.objects.get(user=request.user)
+
+    profile = Register({"companyName": profileData.companyName, "designatePerson": profileData.designatePerson,
+                              "founderCofounder": profileData.founderCofounder,
+                              "website": profileData.website, "mobile": profileData.mobile,
+                              "address": profileData.address
+                                 , "city": profileData.city, "state": profileData.state, "pincode": profileData.pincode
+                                 , "facebook": profileData.facebook, "linkedin": profileData.linkedin,
+                              "twitter": profileData.twitter
+                                 , "industry": profileData.industry, "provideSupport": profileData.provideSupport,
+                              "needSupport": profileData.needSupport,"email":userdata.email,"dipp":userdata.dipp})
+
+    # profileData = Profile.objects.get(userdipp=UserDipp.objects.get(user=request.user))
+    # pprint(userdata.email)
+    # pprint(userdata.dipp)
+    return render(request, "dashboard.html",{'profile':profile})
 
 @login_required(login_url="/login/")
 def update(request):
@@ -188,7 +221,9 @@ def update(request):
             # import ipdb;ipdb.set_trace();
             up.save()
 
-            return render(request, "profileUpdate.html", {'profile':updateProfile,"result": "Your profile has been Updated successfully"})
+            return redirect("/dashboard/")
+
+            # return render(request, "profileUpdate.html", {'profile':updateProfile,"result": "Your profile has been Updated successfully"})
 
 
         except Exception as e:
@@ -251,7 +286,13 @@ def project(request):
 
 @login_required(login_url="/login/")
 def QuestionView(request):
+
+    category=Category.objects.all()
+    subcategory=SubCategory.objects.all()
+    # pprint(category)
+    # pprint(subcategory)
     questionForm=QuestionForm()
+
     profileData = Profile.objects.get(userdipp=UserDipp.objects.get(user=request.user))
     if request.method == "POST":
        try:
@@ -260,16 +301,23 @@ def QuestionView(request):
            ques=Question()
            ques.profile=profileData
            ques.question = request.POST['question']
+
+           # pprint(request.POST['category'])
+           # pprint(request.POST['subcategory'])
+
+           ques.category =Category.objects.get(pk=request.POST['category'])
+           ques.subcategory =SubCategory.objects.get(pk=request.POST['subcategory'])
+
            pro.save()
            ques.save()
 
-           return render(request, "Question.html", {"msg": "Question added successfully.", "questionForm": questionForm})
-
+           # return render(request, "Question.html", {"msg": "Question added successfully.", "questionForm": questionForm,'category':category,'subcategory':subcategory})
+           return redirect('/dashboard/')
        except Exception as e:
 
-        return render(request, "Question.html",{"msg": e, "questionForm": questionForm})
+        return render(request, "Question.html",{"msg": e, "questionForm": questionForm,'category':category,'subcategory':subcategory})
 
-    else : return render(request, "Question.html",{"questionForm": questionForm})
+    else : return render(request, "Question.html",{"questionForm": questionForm,'category':category,'subcategory':subcategory})
 
 
 # def AnswerView(request):
@@ -317,7 +365,7 @@ def QuestionView(request):
 
 
 # @login_required(login_url="/login/")
-def AnswerView(request):
+def Discussions(request):
     ans = Answer()
 
     # profileData = Profile.objects.get(userdipp=UserDipp.objects.get(user=request.user))

@@ -1,0 +1,76 @@
+
+{% extends "base.html" %}
+{% block content %}
+<!--///////////////////////////////////////////////////////////////////////////////////
+                                  Sign up Section
+///////////////////////////////////////////////////////////////////////////////////-->
+
+<section class="dashboard-update">
+    <div class="container">
+        <br>
+        <nav id="site-navigation" class="main-navigation" role="navigation">
+            <div class="nav-menu">
+                <ul>
+                    <li class="current_page_item"><a href="/dashboard/" title="Home">Dashboard</a></li>
+                    <li class="page_item page-item-7 active"><a href="/setting/">Setting</a></li>
+                    <li class="page_item page-item-9"><a href="/project/">Add Project</a></li>
+                    <li class="page_item page-item-9"><a href="/question/">Add Question</a></li>
+                </ul>
+            </div><!-- .nav-menu -->
+        </nav><!-- #site-navigation -->
+
+    </div>
+</section>
+
+<div id="member-profile-section">
+
+    <div class="container">
+        <form name="form" method="post" action="/pwd/">
+
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-profile">
+                    <label class="f-or">CHANGE PASSWORD</label>
+
+
+                    <div class="form-group">
+                        <label class="p-heading"  for="oldpass"> Old Password</label>
+                        <input type="password" name="oldPassword" class="form-control" id="oldpass" placeholder="Enter your Current Password">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="p-heading"  for="newpass">New Password</label>
+                        <input type="password" name="newPassword" class="form-control" id="newpass" placeholder="Enter your New Password">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="p-heading"  for="confirmpass">Confirm Your Password</label>
+                        <input type="password" name="confPassword" class="form-control" id="confirmpass" placeholder="Re-Enter Your Password">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <br>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-primary btn-lg bg-or">Submit</button>
+            </div>
+        </div>
+        </form>
+
+    </div>
+
+
+
+
+</div>
+<br>
+
+
+
+{% endblock %}

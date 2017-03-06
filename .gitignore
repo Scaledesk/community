@@ -9,7 +9,7 @@ __pycache__/
 local_settings.py
 db.sqlite3
 media
-/community/setting.py
-
+community/setting.py
+manage.py
 # End of https://www.gitignore.io/api/django
 

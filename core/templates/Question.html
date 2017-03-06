@@ -1,23 +1,108 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Question</title>
-</head>
-<body>
-
-<h1>Question </h1>
+{% extends "base.html" %}
+{% block content %}
 
 
 
+
+<section class="dashboard-update">
+    <div class="container">
+        <br>
+        <nav id="site-navigation" class="main-navigation" role="navigation">
+            <div class="nav-menu">
+                <ul>
+                    <li class="current_page_item"><a href="/dashboard/" title="Home">Dashboard</a></li>
+                    <li class="page_item page-item-7"><a href="/setting/">Setting</a></li>
+
+                    <li class="page_item page-item-9"><a href="/project/">Add Project</a></li>
+                    <li class="page_item page-item-9 active"><a href="/question/">Add Question</a></li>
+                </ul>
+            </div><!-- .nav-menu -->
+        </nav><!-- #site-navigation -->
+
+    </div>
+</section>
+<div id="member-profile-section">
+
+    <div class="container">
   <form action="/question/" method="post" id="register-form" enctype="multipart/form-data">
-      {% csrf_token %}
-      Question:-{{questionForm.question}}
 
-      <input type="submit" value="Submit" >
-  </form>
+          {% csrf_token %}
 
-{{msg}}
 
-</body>
-</html>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card-profile">
+                        <label class="f-or">ADD QUESTION</label>
+
+
+                        <div class="form-group">
+                            <label class="p-heading"> Select Category</label>
+                            <!--<input type="text" class="form-control" id="sector1" placeholder="Industry/ Sector">-->
+
+                            <select class="form-control" name="category">
+                                {% for data in category %}
+                    <!--{{data.id}}-->
+                    <option value="{{data.id}}">{{data.Category}}</option>
+
+                                 {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="p-heading"> Select Sub-Category</label>
+                            <!--<input type="text" class="form-control" id="sector1" placeholder="Industry/ Sector">-->
+
+                            <select class="form-control"name="subcategory">
+                                {% for subdata in subcategory %}
+                    <option value="{{subdata.id}}">{{subdata.SubCategory}}</option>
+
+                                 {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="p-heading"  for="confirmpass">Your Question</label>
+                            {{questionForm.question}}
+                            <!--<input type="password" class="form-control" id="confirmpass" placeholder="Type Your Question">-->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <br>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-primary btn-lg bg-or">Submit</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+
+
+
+</div>
+<br>
+
+
+
+
+
+<script type='text/javascript'>
+$(document).ready(function(){
+
+
+ $('input[type="text"]').addClass('form-control');
+ $('input[type="number"]').addClass('form-control');
+ //$('input[type="file"]').addClass('form-control');
+ $('select').addClass('form-control');
+    $("#id_companyName").attr('readonly','readonly');
+
+
+});
+</script>
+
+{% endblock %}

@@ -43,7 +43,9 @@ class Register (forms.Form) :
        facebook = forms.CharField(max_length=256)
        linkedin = forms.CharField(max_length=256)
        twitter = forms.CharField(max_length=256)
-       industry = forms.CharField(max_length=100)
+       INDUSTRY_TYPE = (("Healthcare", "Healthcare"), ("FinTech", "FinTech"),
+                       ("Logistics", "Logistics"))
+       industry = forms.ChoiceField(choices=INDUSTRY_TYPE)
        password = forms.CharField(max_length='15', widget=forms.PasswordInput())
        provideSupport=forms.CharField(max_length=300)
        needSupport=forms.CharField(max_length=300)
@@ -66,4 +68,15 @@ class ProjectForm(forms.Form):
     investor = forms.ImageField(label='Select a file', help_text='max. 2 megabytes')
 
 class QuestionForm(forms.Form):
-       question=forms.CharField(max_length=1000)
+    # group = forms.ModelChoiceField(queryset=Group.objects.all())
+    # category = forms.ModelChoiceField(queryset=Category.objects.filter(group=group.id)) // error is here
+
+    # QUESTION_CATEGORY = (
+    # ("Category1", "Category1"), ("Category2", "Category2"), ("Category3", "Category3"), ("Category4", "Category4"))
+    # category = forms.ChoiceField(choices=QUESTION_CATEGORY)
+    # SUB_CATEGORY = (
+    #     ("SubCategory1", "SubCategory1"), ("SubCategory2", "SubCategory2"), ("SubCategory3", "SubCategory3"),
+    #     ("SubCategory4", "SubCategory4"))
+    # subcategory = forms.ChoiceField(choices=SUB_CATEGORY)
+
+    question=forms.CharField(max_length=1000)
