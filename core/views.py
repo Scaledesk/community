@@ -7,6 +7,7 @@ from django.views.generic import RedirectView
 # from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
+from django.contrib.auth import logout
 import json
 from .models import *
 # Create your views here.
@@ -14,10 +15,16 @@ from django.contrib import auth
 from django.core.files import File
 from django.core.files.storage import FileSystemStorage
 from django.core.mail import EmailMessage
+from itertools import chain
 
 
 def index(request):
     return HttpResponse("Hello, You are at the core index.")
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')
+
 
 def Signup(request):
     if request.method == 'POST':
@@ -77,6 +84,11 @@ def CreateUser(request):
                             # pprint(data)
                             # pprint(userData.dipp)
                             # pprint(userData.email)
+                            profileImage = request.FILES['profileImage']
+                            fs = FileSystemStorage()
+                            profileImage = fs.save(profileImage.name, profileImage)
+                            profileImage_url = fs.url(profileImage)
+
                             up = Profile()
                             up.userdipp=userData
                             # up.Profile.object(status=1)
@@ -97,6 +109,7 @@ def CreateUser(request):
                                     if not k.column is 'id':
                                         setattr(up, k.column, processed_data[k.column])
                             # import ipdb;ipdb.set_trace();
+                            up.profileImage=profileImage_url
                             up.save()
 
                             user = authenticate(username=email, password=password)
@@ -106,7 +119,10 @@ def CreateUser(request):
 
 
                     except Exception as e:
-                        return render(request, 'register.html',{"result": "your profile has been already registered","register":register_form})
+                        return render(request, 'register.html',
+                                      {"result": e})
+
+                        # return render(request, 'register.html',{"result": "your profile has been already registered","register":register_form})
 
 
 
@@ -209,6 +225,10 @@ def update(request):
             up=profileData
 
             data = request.POST
+            profileImage = request.FILES['profileImage']
+            fs = FileSystemStorage()
+            profileImage = fs.save(profileImage.name, profileImage)
+            profileImage_url = fs.url(profileImage)
 
             processed_data = {}
 
@@ -219,6 +239,7 @@ def update(request):
                     if not k.column is 'id':
                         setattr(up, k.column, processed_data[k.column])
             # import ipdb;ipdb.set_trace();
+            up.profileImage=profileImage_url
             up.save()
 
             return redirect("/dashboard/")
@@ -370,8 +391,10 @@ def Discussions(request):
 
     # profileData = Profile.objects.get(userdipp=UserDipp.objects.get(user=request.user))
 
-    questionData=Question.objects.all()
-    ansData = Answer.objects.all()
+    # questionData=Question.objects.all()
+    # ansData = Answer.objects.all()
+    # profileData=Profile.objects.get(profile=questionData.id)
+    # for data in profileData:
 
     # userdippno = Question.objects.get(profile = Profile.objects.get(userdipp=UserDipp.objects.get(user=request.user)))
     # userdipp = UserDipp.objects.get(user=request.user)
@@ -389,14 +412,36 @@ def Discussions(request):
         #     pprint(obj.answerField)
 
     # for data1 in data:
-    #
+    #           response_data['error'] = 'Your Email and Dipp not valid!'
+
     #  pprint(data1)
 
 
-
+    response_data = []
+    data = {}
     if request.method == 'GET':
 
-        return render(request, "Answer.html", {"questionData": questionData, "ansData":ansData})
+        questionData = Question.objects.all()
+        ansData = Answer.objects.all()
+
+        for quedata in questionData:
+            profileData = quedata.profile
+            if Answer.objects.filter(question = quedata).exists():
+                answer = Answer.objects.get(question=quedata)
+
+            # pprint(answer)
+                data['question'] = quedata.question
+                data['answer'] = answer.answerField
+                data['questionProfileImage'] = profileData.profileImage
+
+            # pprintdata()
+            # for ans in ansData:
+            #     data['answer'] = ans.answerField
+            #     data['answerProfileImage'] = ans.profile.profileImage
+            response_data.append(data)
+        pprint(response_data)
+
+        return render(request, "Answer.html", {"questionData": questionData, "ansData":ansData,"response_data":response_data})
 
     else:
 
@@ -407,6 +452,8 @@ def Discussions(request):
 
                 ans.answerField = request.POST['answer']
                 ans.question=Question.objects.get(pk=request.POST['id'])
+                ans.question=Profile.objects.get(pk=request.POST['id'])
+
                 ans.save()
                 # ques.save()
                 return render(request, "Answer.html",{"msg": "Answer  successfully submit.", "questionData": questionData, "ansData":ansData})
@@ -457,8 +504,10 @@ def Index(request):
     return render (request,"index.html")
 
 def ProfileList(request):
+
     profileData=Profile.objects.all()
-    # projectData = Project.objects.all()
+
+
 
     return render (request,"memberList.html",{"profile":profileData})
 
@@ -483,4 +532,43 @@ def ProfileDetails(request,id):
 def mailSend(request):
     email = EmailMessage('Hello', 'Django', to=['nkscoder@gmail.com'])
     email.send()
+    return render (request,"index.html")
+
+def Search(request):
+    if request.method == "POST":
+        type = request.POST['select_type']
+
+        search = request.POST['search']
+        # pprint(type)
+        # pprint(search)
+
+        if type=="user":
+
+            # pr = Profile.objects.all()
+            # for term in search.split():
+            #     qs = pr.filter(companyName__icontains=term )
+            # return qs
+            # searchData = Profile.objects.search(search, operator="or")
+            # pprint(qs)
+            searchData=Profile.objects.filter(companyName__startswith=search)
+            # pprint(searchData)
+            # import ipdb;  ipdb.set_trace()
+
+            return render(request, "memberList.html", {"profile": searchData})
+        else:
+
+            # questionData = Question.objects.all()
+            # searchData=Profile.objects.filter(companyName__startswith=search)
+
+            questionData=Question.objects.filter(question__startswith=search)
+            # pprint(questionData)
+            # import ipdb;
+            # ipdb.set_trace()
+            # ansData=""
+            # for que in questionData:
+            #     pprint(que.id)
+            #     ansData = Answer.objects.get(pk=que.id)
+
+            return render(request, "questionList.html", {"questionData": questionData})
+
     return render (request,"index.html")

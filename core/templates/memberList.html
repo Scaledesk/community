@@ -12,8 +12,16 @@
                 <div class="row bg-lightgreen" style="padding:30px;">
                     <div class="col-xs-12 ">
                         <div class="input-group" style="width:80%;margin: 0 auto;">
-                            <input type="text" class="form-control search-control" placeholder="Search your company">
-                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                            <form action="/search/" method="post">
+                                   {% csrf_token %}
+                            <input type="text" class="form-control search-control" name="search" placeholder="Search your company">
+                             <select name="select_type">
+                                 <option value="user">User</option>
+                                 <option value="question">Question</option>
+
+                             </select>
+                            <span class="input-group-addon"><input type="submit" name=" submit"> <i class="fa fa-search"></i></span>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -29,7 +37,14 @@
                                     <div class="col-md-3 text-center">
                                         <div class="card-profile custom-box-footer">
                                             <a href="/profiledetails/{{data.id}}">
-                                                <img src="{% static 'img/test.png' %}"/>
+                                                {% if data.profileImage %}
+
+                                                <img width="60%" src="{{data.profileImage}}" />
+                                                 {% endif %}
+                                                {% if not data.profileImage %}
+                                                <img width="60%" src="{% static 'img/2.png' %}" />
+                                                {% endif %}
+
                                                 <p class="p-heading">{{ data.companyName }}</p>
                                                 <p>{{ data.industry }}</p>
                                             </a>

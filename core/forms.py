@@ -43,6 +43,7 @@ class Register (forms.Form) :
        facebook = forms.CharField(max_length=256)
        linkedin = forms.CharField(max_length=256)
        twitter = forms.CharField(max_length=256)
+       profileImage=forms.ImageField(label='Select a file', help_text='max. 2 megabytes')
        INDUSTRY_TYPE = (("Healthcare", "Healthcare"), ("FinTech", "FinTech"),
                        ("Logistics", "Logistics"))
        industry = forms.ChoiceField(choices=INDUSTRY_TYPE)

@@ -27,6 +27,7 @@ class Profile(models.Model):
       facebook=models.CharField(max_length=256)
       linkedin=models.CharField(max_length=256)
       twitter = models.CharField(max_length=256)
+      profileImage = models.ImageField(upload_to='documents/')
       INDUSTRY_TYPE = (("Healthcare", "Healthcare"), ("FinTech", "FinTech"),
                        ("Logistics", "Logistics"))
       industry = models.CharField(max_length=100,choices=INDUSTRY_TYPE)
@@ -79,6 +80,7 @@ class Question(models.Model):
             return self.question
 class Answer(models.Model):
       question=models.ForeignKey(Question)
+      profile = models.ForeignKey(Profile)
       answerField=models.CharField(max_length=1000)
 
       def __unicode__(self):
