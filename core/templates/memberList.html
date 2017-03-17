@@ -29,11 +29,11 @@
             <div class="container">
 
                     <br>
-
+                         <div class="row">
                          {{profileData.companyName}}
                          {% for data in profile %}
 
-                                <div class="row">
+                               
                                     <div class="col-md-3 text-center">
                                         <div class="card-profile custom-box-footer">
                                             <a href="/profiledetails/{{data.id}}">
@@ -53,8 +53,8 @@
                                     </div>
 
 
-                                </div> <!--first card end-->
                     {% endfor %}
+                   </div> <!--first card end-->
 
                     <br><br>
 

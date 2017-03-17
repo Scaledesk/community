@@ -387,7 +387,7 @@ def QuestionView(request):
 
 # @login_required(login_url="/login/")
 def Discussions(request):
-    ans = Answer()
+    # ans = Answer()
 
     # profileData = Profile.objects.get(userdipp=UserDipp.objects.get(user=request.user))
 
@@ -421,49 +421,86 @@ def Discussions(request):
     data = {}
     if request.method == 'GET':
 
-        questionData = Question.objects.all()
-        ansData = Answer.objects.all()
+        # questionData = Question.objects.all()
+        # ansData = Answer.objects.all()
+        # for quedata in questionData:
+        #     profileData = quedata.profile
+        #     if Answer.objects.filter(question = quedata).exists():
+        #         answer = Answer.objects.get(question=quedata)
 
-        for quedata in questionData:
-            profileData = quedata.profile
-            if Answer.objects.filter(question = quedata).exists():
-                answer = Answer.objects.get(question=quedata)
+        #         data['question'] = quedata.question
+        #         data['answer'] = answer.answerField
+        #         data['questionProfileImage'] = profileData.profileImage
 
-            # pprint(answer)
-                data['question'] = quedata.question
-                data['answer'] = answer.answerField
-                data['questionProfileImage'] = profileData.profileImage
-
+        #     # pprintdata()
+        #     # for ans in ansData:
+        #     #     data['answer'] = ans.answerField
+        #     #     data['answerProfileImage'] = ans.profile.profileImage
+        #     response_data.append(data)
+        
+        questions=[]
+        for q in Question.objects.all():
+            ans_dict=[]
+            for a in q.answer_set.all():
+                ans_dict.append({
+                  "answerField":a.answerField,
+                  "pk":a.id,
+                  "profileImage":a.profile.profileImage,
+                  "profile_id":a.profile.id,
+                  })
+            questions.append({
+              "answers":ans_dict,
+              "profileImage":q.profile.profileImage,
+              "profile_id":q.profile.pk,
+              "question":q.question,
+              "questionId":q.id
+              })
             # pprintdata()
             # for ans in ansData:
             #     data['answer'] = ans.answerField
             #     data['answerProfileImage'] = ans.profile.profileImage
-            response_data.append(data)
-        pprint(response_data)
+            
 
-        return render(request, "Answer.html", {"questionData": questionData, "ansData":ansData,"response_data":response_data})
+        # return render(request, "Answer.html", {"questionData": questionData, "ansData":ansData,"response_data":response_data})
+        return render(request, "Answer.html", {"response_data":questions})
+    return redirect('/discussions/')
 
-    else:
+    # else:
 
-        if request.method == "POST":
+    #     if request.method == "POST":
+    #         try:
+    #             # ques=Question()
+    #             # ques.question=request.POST['id']
+
+    #             ans.answerField = request.POST['answer']
+    #             ans.question=Question.objects.get(pk=request.POST['id'])
+    #             ans.question=Profile.objects.get(pk=request.POST['id'])
+
+    #             ans.save()
+    #             # ques.save()
+    #             return render(request, "Answer.html",{"msg": "Answer  successfully submit.", "questionData": questionData, "ansData":ansData})
+    #         except Exception as e:
+    #              return render(request, "Answer.html",{"msg": e, "questionData": questionData, "ansData":ansData})
+    #     else:
+    #         return render(request, "Answer.html",{"questionData": questionData, "ansData":ansData})
+
+@login_required(login_url="/login/")
+def SendAnswer(request):
+
+    if request.method == "POST":
             try:
-                # ques=Question()
-                # ques.question=request.POST['id']
+                ans=Answer()
 
                 ans.answerField = request.POST['answer']
-                ans.question=Question.objects.get(pk=request.POST['id'])
-                ans.question=Profile.objects.get(pk=request.POST['id'])
+                ans.question=Question.objects.get(pk=request.POST['quenstionId'])
+                ans.profile=Profile.objects.get(pk=request.POST['ProfileId'])
 
                 ans.save()
-                # ques.save()
-                return render(request, "Answer.html",{"msg": "Answer  successfully submit.", "questionData": questionData, "ansData":ansData})
+                return redirect('/discussions/')
             except Exception as e:
-                 return render(request, "Answer.html",{"msg": e, "questionData": questionData, "ansData":ansData})
-        else:
-            return render(request, "Answer.html",{"questionData": questionData, "ansData":ansData})
-
-
-
+                 return render(request, "Answer.html",{"msg": e})
+    else:
+      return redirect('/discussions/')
 
 
 def AnswerDelete(request, id):
