@@ -458,7 +458,7 @@ def Discussions(request):
               "profileImage":q.profile.profileImage,
               "profile_id":q.profile.pk,
               "question":q.question,
-              "questionId":q.profile_id,
+              "questionId":q.id,
               "profileName":q.profile.companyName
               })
             # pprintdata()
