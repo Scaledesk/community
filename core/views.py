@@ -16,6 +16,7 @@ from django.core.files import File
 from django.core.files.storage import FileSystemStorage
 from django.core.mail import EmailMessage
 from itertools import chain
+from django.utils import timezone
 
 
 def index(request):
@@ -447,13 +448,18 @@ def Discussions(request):
                   "pk":a.id,
                   "profileImage":a.profile.profileImage,
                   "profile_id":a.profile.id,
+                  "profileName":q.profile.companyName,
+                  "address":q.profile.address,
+                  "datetime":a.date
+
                   })
             questions.append({
               "answers":ans_dict,
               "profileImage":q.profile.profileImage,
               "profile_id":q.profile.pk,
               "question":q.question,
-              "questionId":q.id
+              "questionId":q.profile_id,
+              "profileName":q.profile.companyName
               })
             # pprintdata()
             # for ans in ansData:
@@ -502,27 +508,46 @@ def SendAnswer(request):
     else:
       return redirect('/discussions/')
 
+def QuestionDelete(request, id):
+     
+     questionData = Question.objects.get(pk=id)
+    
+     if questionData:
+    
+             try:
+                   questionData.delete()
+                   return redirect('/questionList/')
+
+             except Exception as e:
+                  return redirect('/questionList/')
+    
+    
+     else: 
+       return redirect('/questionList/')
+
+
+
 
 def AnswerDelete(request, id):
-    pprint("______________________________________________________________________________")
+  
     # pprint(id)
-    #
-    # questionData = Question.objects.all()
-    # ansData = Answer.objects.all()
-    # delete=Answer.objects.get(id=id)
-    #
-    # if delete:
-    #
-    #          try:
-    #               delete.delete()
-    #               return render(request, "Answer.html",
-    #                            {"msg": "Answer  successfully submit.", "questionData": questionData, "ansData": ansData})
-    #
-    #          except Exception as e:
-    #           return render(request, "Answer.html",{"msg": "Answer  successfully submit.", "questionData": questionData, "ansData": ansData})
-    #
-    #
-    # else: return render(request, "Answer.html",{"msg": "Answer  successfully submit.", "questionData": questionData, "ansData": ansData})
+    
+    questionData = Question.objects.all()
+    ansData = Answer.objects.all()
+    delete=Answer.objects.get(id=id)
+    
+    if delete:
+    
+             try:
+                  delete.delete()
+                  return render(request, "Answer.html",
+                               {"msg": "Answer  successfully submit.", "questionData": questionData, "ansData": ansData})
+    
+             except Exception as e:
+              return render(request, "Answer.html",{"msg": "Answer  successfully submit.", "questionData": questionData, "ansData": ansData})
+    
+    
+    else: return render(request, "Answer.html",{"msg": "Answer  successfully submit.", "questionData": questionData, "ansData": ansData})
 
 
 
@@ -597,15 +622,35 @@ def Search(request):
             # questionData = Question.objects.all()
             # searchData=Profile.objects.filter(companyName__startswith=search)
 
-            questionData=Question.objects.filter(question__startswith=search)
-            # pprint(questionData)
-            # import ipdb;
-            # ipdb.set_trace()
-            # ansData=""
-            # for que in questionData:
-            #     pprint(que.id)
-            #     ansData = Answer.objects.get(pk=que.id)
-
-            return render(request, "questionList.html", {"questionData": questionData})
+            # questionData=Question.objects.filter(question__startswith=search)
+             questions=[]
+        for q in Question.objects.filter(question__startswith=search):
+            questions.append({
+              "profileName":q.profile.companyName,
+              "profileImage":q.profile.profileImage,
+              "profile_id":q.profile.pk,
+              "question":q.question,
+              "questionId":q.id
+              })
+       
+             # pprint(questions)
+            return render(request, "questionList.html", {"questionData": questions})
 
     return render (request,"index.html")
+
+@login_required(login_url="/login/")
+def QuestionList(request):
+    # profileData = Profile.objects.get(userdipp=UserDipp.objects.get(user=request.user))
+
+     questions=Question.objects.filter(profile=Profile.objects.get(userdipp=UserDipp.objects.get(user=request.user)))
+
+     pprint(questions) 
+
+     return render(request, "UserQuestionList.html", {"questionData": questions})
+
+
+
+
+
+
+

@@ -4,6 +4,8 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime    
+
 
 
 class UserDipp(models.Model):
@@ -81,6 +83,7 @@ class Question(models.Model):
 class Answer(models.Model):
       question=models.ForeignKey(Question)
       profile = models.ForeignKey(Profile)
+      date = models.DateTimeField(default=datetime.now, blank=True)
       answerField=models.CharField(max_length=1000)
 
       def __unicode__(self):

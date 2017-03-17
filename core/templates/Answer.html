@@ -18,7 +18,7 @@
                     <div class="row p-30">
                         <div class="col-md-2 text-center">
                             <img src="{{data.profileImage}}" width="60%">
-                            <p class="p-heading f-green f-20"> Lorem Ipsum</p>
+                            <p class="p-heading f-green f-20"> {{data.profileName}}</p>
                         </div>
                         <div class="col-md-10">
                             <p class="f-30 f-green"> {{ data.question }}</p>
@@ -27,7 +27,7 @@
                             <button type="submit" class="btn btn-primary btn-lg button-custom" data-toggle="collapse" data-target="#demo{{data.id}}">Answer it</button> -->
                             <form action="/answer/" method="post">
                                       {% csrf_token %}
-                             <input type="text" name="answer">
+                             <input type="text" name="answer" required="">
                              <input type="hidden" name="ProfileId" value="{{data.profile_id}}" >
                              <input type="hidden" name="quenstionId" value="{{data.questionId}}">
                              <input type="submit" name="submit" value="Send">
@@ -47,16 +47,18 @@
                 <div id="txtEditor"></div>
                 </div> -->
                 {% for ans in data.answers %}
+                   {% load humanize %}
+
                         <div class="bg-darkgrey p-30">
                                     <div class="row">
                                         <div class="col-md-2 text-center">
                                             <img src="{{ans.profileImage}}" width="60%">
-                                            <p class="p-heading f-green f-20"> Lorem Ipsum</p>
+                                            <p class="p-heading f-green f-20">{{ans.profileName}}</p>
                                         </div>
                                         <div class="col-md-10">
-                                            <p class="f-16"> <span><i class="fa fa-clock-o" aria-hidden="true"></i> 20 Mints ago </span>&nbsp;&nbsp;<span><i class="fa fa-map-marker" aria-hidden="true"></i> New Delhi </span></p>
+                                            <p class="f-16"> <span><i class="fa fa-clock-o" aria-hidden="true"></i> {{ans.datetime |naturaltime}} </span>&nbsp;&nbsp;<span><i class="fa fa-map-marker" aria-hidden="true"></i> {{ans.address}} </span></p>
                                             <p class="f-16">{{ ans.answerField }}</p>
-
+                                             
 
 
                                         </div>

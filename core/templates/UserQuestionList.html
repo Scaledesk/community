@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% block content %}
+{% load staticfiles %}
+
+<!--///////////////////////////////////////////////////////////////////////////////////
+                                  Member profile Section
+///////////////////////////////////////////////////////////////////////////////////-->
+
+<section class="dashboard-update">
+    <div class="container">
+        <br>
+        <nav id="site-navigation" class="main-navigation" role="navigation">
+            <div class="nav-menu">
+                <ul>
+                    <li class="current_page_item active"><a href="/dashboard/" title="Home">Dashboard</a></li>
+                    <li class="page_item page-item-7"><a href="/setting/">Setting</a></li>
+
+                    <li class="page_item page-item-9"><a href="/project/">Add Project</a></li>
+                    <li class="page_item page-item-9"><a href="/question/">Add Question</a></li>
+                    <li class="page_item page-item-9"><a href="/questionList/">Question</a></li>
+
+                </ul>
+            </div><!-- .nav-menu -->
+        </nav><!-- #site-navigation -->
+
+    </div>
+</section>
+
+
+<section id="question-paper-list">
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card-profile bg-darkgreen">
+                    <div class="row">
+                       <div class="col-md-10">
+                           <p class="p-heading f-w">
+                               Topic
+
+                           </p>
+                       </div><!-- 
+                        <div class="col-md-3">
+                            <p class="p-heading f-w">
+                                Replies
+
+                            </p>
+                        </div> -->
+                        <div class="col-md-2">
+                            <p class="p-heading f-w">
+                                Delete
+
+                            </p>
+                        </div>
+
+                    </div> <!--first card end-->
+
+
+
+
+            </div>
+                <div class="card-profile">
+<!--                     {{questionData.question }}
+ -->                    {% for data in questionData %}
+                    <div class="row">
+                        <div class="col-md-10">
+                            <p class="p-heading f-green">
+                          {{ data.question }}
+
+                            </p>
+                        </div><!-- 
+                        <div class="col-md-3">
+                            <p class="p-heading f-or">
+                               27
+
+                            </p>
+                        </div> -->
+
+                        <div class="col-md-2">
+
+                            <div class="row">
+                                <div class="col-xs-3">
+                                <a href="/questiondelete/{{data.id}}">Delete</a>
+
+<!--                                     <img src="{{data.profileImage}}" width="100%">
+ -->                                </div>
+                                
+                            </div>
+                        </div>
+
+                    </div> <!--first row end-->
+                    <hr style="border-color:#e8e8e8;">
+                     {% endfor %}
+
+
+
+
+                </div>
+
+
+
+        </div>
+    </div>
+
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

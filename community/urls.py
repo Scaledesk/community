@@ -33,10 +33,13 @@ urlpatterns = [
     url(r"^discussions/",Discussions),
     url(r'^answerupdate/(?P<id>[0-9]+)/$', AnswerUpdate, name='answerupdate'),
     url(r'^answerdelete/(?P<id>[0-9]+)/', AnswerDelete, name='answerdelete'),
+    url(r'^questiondelete/(?P<id>[0-9]+)/', QuestionDelete, name='questiondelete'),
     url(r'^answer/', SendAnswer),
     url(r"^home/",Home),
     url(r"^signup/",Signup),
     url(r"^setting/",password),
+    url(r"^questionList/",QuestionList),
+
     # url(r"^singleprofile/", SingleProfile),
     url(r"^menberlist/", ProfileList),
     url(r'^profiledetails/(?P<id>[0-9]+)/', ProfileDetails),
